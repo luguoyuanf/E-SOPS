@@ -4,7 +4,7 @@ E-SOPS 面向生产现场管理电子作业指导书，将产品、SOP、生产�
 
 - 在线演示：[https://esops.cc](https://esops.cc)
 - 详细使用教程：[https://esops.cc/manual](https://esops.cc/manual)
-- 客户端安装包：[GitHub Releases](https://github.com/luguoyuanf/E-SOPS/releases)
+- 客户端安装包：[官网下载](https://esops.cc/downloads) · [GitHub Releases](https://github.com/luguoyuanf/E-SOPS/releases/tag/v0.1.101)
 - 镜像仓库：[Gitee](https://gitee.com/barping/e-sops)
 
 ## 功能概览
@@ -19,28 +19,28 @@ E-SOPS 面向生产现场管理电子作业指导书，将产品、SOP、生产�
 页面展示的是官网手册截图，界面可能随版本更新。
 
 ### 工作台
-![工作台](docs/screenshots/dashboard.png)
+![工作台](https://esops.cc/manual/dashboard.png)
 
 ### SOP 编辑
-![SOP 编辑](docs/screenshots/sop-editor.png)
+![SOP 编辑](https://esops.cc/manual/sop-editor.png)
 
 ### 产品管理
-![产品管理](docs/screenshots/products.png)
+![产品管理](https://esops.cc/manual/products.png)
 
 ### 排产发布
-![排产发布](docs/screenshots/plans.png)
+![排产发布](https://esops.cc/manual/plans.png)
 
 ### 产线管理
-![产线管理](docs/screenshots/lines.png)
+![产线管理](https://esops.cc/manual/lines.png)
 
 ### 终端管理
-![终端管理](docs/screenshots/devices.png)
+![终端管理](https://esops.cc/manual/devices.png)
 
 ### 报工记录
-![报工记录](docs/screenshots/report.png)
+![报工记录](https://esops.cc/manual/report.png)
 
 ### Web 工位端
-![Web 工位端](docs/screenshots/web-terminal.png)
+![Web 工位端](https://esops.cc/terminal-demo.png)
 
 ## 技术组成
 
@@ -126,7 +126,7 @@ docker compose -f compose.release.yml cp ./backup-uploads/. backend:/app/backend
 
 ## 客户端安装包
 
-GitHub Releases 提供 Android ARM32、Android ARM64 和 Ubuntu ARM64 安装包及 SHA-256 校验文件。选择与设备架构匹配的安装包；Windows 暂未提供。安装包为独立发布物，客户端源码不在本仓库中。
+官网和 GitHub Releases 均提供 Android ARM32、Android ARM64 和 Ubuntu ARM64 安装包。GitHub Release 另提供 SHA-256 校验文件。选择与设备架构匹配的安装包；Windows 暂未提供。安装包为独立发布物，客户端源码不在本仓库中。
 
 ## 许可证与第三方声明
 
