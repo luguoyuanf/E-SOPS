@@ -1,0 +1,14 @@
+{
+  "title": "Démonstrations",
+  "antd": "Ant Design Vue",
+  "vben": {
+    "title": "Projet",
+    "about": "À propos",
+    "document": "Document",
+    "antdv": "Version d'Ant Design Vue",
+    "antdv-next": "Version Antdv Next",
+    "naive-ui": "Version de Naive UI",
+    "element-plus": "Version d'Element Plus",
+    "tdesign": "Version de TDesign Vue"
+  }
+}

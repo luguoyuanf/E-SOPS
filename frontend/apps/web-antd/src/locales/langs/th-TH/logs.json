@@ -1,0 +1,25 @@
+{
+  "login": {
+    "user": "ผู้ใช้",
+    "ip": "ที่อยู่ IP",
+    "status": "สถานะ",
+    "failureReason": "เหตุผลในการล้มเหลว",
+    "userAgent": "เบราว์เซอร์",
+    "createdAt": "เวลาเข้าสู่ระบบ"
+  },
+  "common": {
+    "keyword": "คำหลัก"
+  },
+  "operation": {
+    "requestMethod": "วิธีการขอ",
+    "user": "ผู้ใช้",
+    "module": "โม�ูล",
+    "action": "การกระทำ",
+    "method": "วิธี",
+    "path": "เส้นทางคำขอ",
+    "statusCode": "รหัสสถานะ",
+    "durationMs": "ระยะเวลา (ms)",
+    "ip": "ที่อยู่ IP",
+    "createdAt": "เวลาดำเนินการ"
+  }
+}

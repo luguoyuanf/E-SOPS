@@ -1,0 +1,14 @@
+{
+  "title": "Demos",
+  "antd": "Ant Design Vue",
+  "vben": {
+    "title": "Dự án",
+    "about": "Giới thiệu",
+    "document": "Tài liệu",
+    "antdv": "Phiên bản Ant Design Vue",
+    "antdv-next": "Phiên bản Antdv Next",
+    "naive-ui": "Phiên bản Naive UI",
+    "element-plus": "Phiên bản Element Plus",
+    "tdesign": "TDesign Vue Version"
+  }
+}

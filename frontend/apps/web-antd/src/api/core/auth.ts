@@ -1,0 +1,381 @@
+import type {
+  LoginCaptchaChallenge as FastApiLoginCaptchaChallenge,
+  Message,
+  NewPassword,
+  QrCodeLoginChallenge,
+  QrCodeLoginConfirmRequest,
+  QrCodeLoginConfirmResult,
+  QrCodeLoginCreate,
+  QrCodeLoginExchangeRequest,
+  QrCodeLoginStatus,
+  QrCodeLoginStatusRequest,
+  PasswordRecoverySend,
+  PasswordRecoveryVerify,
+  PasswordRecoveryProof,
+  PasswordRecoveryReset,
+  RegistrationStatus,
+  RegistrationTenantCodeAvailability,
+  RegistrationEmailCodeRequest,
+  RegistrationEmailCodeSent,
+  SmsCodeRequest,
+  SmsCodeSent,
+  SmsLoginRequest,
+  TenantRegistrationRequest,
+  Token,
+  UpdatePassword,
+  UserPublic,
+  UserUpdateMe,
+} from '#/api/generated';
+
+import { baseRequestClient, requestClient } from '#/api/request';
+
+import { getMyPermissionsApi } from './rbac';
+
+export namespace AuthApi {
+  /** 登录接口参数 */
+  export interface LoginParams {
+    captcha_code?: string;
+    captcha_id?: string;
+    captcha_verification?: string;
+    mfa_code?: string;
+    password?: string;
+    tenant_code?: string;
+    username?: string;
+  }
+
+  export interface SliderCaptchaResponse {
+    repCode: string;
+    repData?: null | {
+      imageHeight: number;
+      imageWidth: number;
+      jigsawImageBase64: string;
+      originalImageBase64: string;
+      pieceWidth: number;
+      pieceY: number;
+      secretKey: string;
+      token: string;
+    };
+    repMsg?: string;
+  }
+
+  /** 登录接口返回值 */
+  export interface LoginResult {
+    accessToken: string;
+  }
+
+  export type FastApiToken = Token;
+  export type LoginCaptchaChallenge = FastApiLoginCaptchaChallenge;
+
+  export type FastApiUser = UserPublic;
+
+  export interface RefreshTokenResult {
+    data: string;
+    status: number;
+  }
+
+  export type MessageResult = Message;
+
+  export type UpdateCurrentUserPayload = UserUpdateMe;
+
+  export type UpdatePasswordPayload = UpdatePassword;
+
+  export type ResetPasswordPayload = NewPassword;
+
+  export type SendSmsCodePayload = SmsCodeRequest;
+
+  export type SendSmsCodeResult = SmsCodeSent;
+
+  export type SmsLoginPayload = SmsLoginRequest;
+
+  export type TenantRegistrationPayload = TenantRegistrationRequest;
+
+  export type RegistrationStatusResult = RegistrationStatus;
+
+  export type QrLoginCreatePayload = QrCodeLoginCreate;
+
+  export type QrLoginChallenge = QrCodeLoginChallenge;
+
+  export type QrLoginStatusPayload = QrCodeLoginStatusRequest;
+
+  export type QrLoginStatusResult = QrCodeLoginStatus;
+
+  export type QrLoginConfirmPayload = QrCodeLoginConfirmRequest;
+
+  export type QrLoginConfirmResult = QrCodeLoginConfirmResult;
+
+  export type QrLoginExchangePayload = QrCodeLoginExchangeRequest;
+
+  export interface MfaStatus {
+    confirmed_at?: null | string;
+    enabled: boolean;
+    method?: null | string;
+    pending_setup: boolean;
+    recovery_codes_remaining: number;
+  }
+
+  export interface MfaSetup {
+    account_name: string;
+    issuer: string;
+    otpauth_uri: string;
+    secret: string;
+  }
+
+  export interface EnableMfaPayload {
+    code: string;
+  }
+
+  export interface EnableMfaResult extends MessageResult {
+    recovery_codes: string[];
+  }
+
+  export interface DisableMfaPayload extends EnableMfaPayload {
+    current_password: string;
+  }
+
+  export interface EnterpriseOidcStatus {
+    enabled: boolean;
+    login_url?: null | string;
+  }
+}
+
+/**
+ * 登录
+ */
+export async function loginApi(data: AuthApi.LoginParams) {
+  const formData = new URLSearchParams();
+  formData.set('username', data.username ?? '');
+  formData.set('password', data.password ?? '');
+  if (data.tenant_code) {
+    formData.set('tenant_code', data.tenant_code);
+  }
+  if (data.captcha_id) {
+    formData.set('captcha_id', data.captcha_id);
+  }
+  if (data.captcha_verification) {
+    formData.set('captcha_verification', data.captcha_verification);
+  }
+  if (data.captcha_code) {
+    formData.set('captcha_code', data.captcha_code);
+  }
+  if (data.mfa_code) {
+    formData.set('mfa_code', data.mfa_code);
+  }
+
+  // Password failures must remain on the login form, not trigger session expiry.
+  const response = await baseRequestClient.post<{
+    data: AuthApi.FastApiToken;
+  }>(
+    '/login/access-token',
+    formData,
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    },
+  );
+
+  return { accessToken: response.data.access_token };
+}
+
+/**
+ * 刷新accessToken
+ */
+export async function refreshTokenApi() {
+  return baseRequestClient.post<AuthApi.RefreshTokenResult>('/auth/refresh', {
+    withCredentials: true,
+  });
+}
+
+/**
+ * 退出登录
+ */
+export async function logoutApi() {
+  return Promise.resolve();
+}
+
+export function getCurrentUserApi() {
+  return requestClient.get<AuthApi.FastApiUser>('/users/me');
+}
+
+export function updateCurrentUserApi(data: AuthApi.UpdateCurrentUserPayload) {
+  return requestClient.request<AuthApi.FastApiUser>('/users/me', {
+    data,
+    method: 'PATCH',
+  });
+}
+
+export function updateCurrentPasswordApi(data: AuthApi.UpdatePasswordPayload) {
+  return requestClient.request<AuthApi.MessageResult>('/users/me/password', {
+    data,
+    method: 'PATCH',
+  });
+}
+
+export function getCurrentUserMfaStatusApi() {
+  return requestClient.get<AuthApi.MfaStatus>('/users/me/mfa');
+}
+
+export function setupCurrentUserMfaApi() {
+  return requestClient.post<AuthApi.MfaSetup>('/users/me/mfa/setup');
+}
+
+export function enableCurrentUserMfaApi(data: AuthApi.EnableMfaPayload) {
+  return requestClient.post<AuthApi.EnableMfaResult>('/users/me/mfa/enable', data);
+}
+
+export function disableCurrentUserMfaApi(data: AuthApi.DisableMfaPayload) {
+  return requestClient.post<AuthApi.MessageResult>('/users/me/mfa/disable', data);
+}
+
+export function requestPasswordRecoveryApi(email: string) {
+  return requestClient.post<AuthApi.MessageResult>(
+    `/password-recovery/${encodeURIComponent(email)}`,
+  );
+}
+
+export function getLoginCaptchaApi(username: string) {
+  return requestClient.get<AuthApi.LoginCaptchaChallenge>('/login/captcha', {
+    skipErrorMessage: true,
+    params: {
+      username,
+    },
+  });
+}
+
+export function getSliderCaptchaApi(data: { captchaType: 'blockPuzzle' }) {
+  return baseRequestClient.post<AuthApi.SliderCaptchaResponse>(
+    '/system/captcha/get',
+    data,
+  );
+}
+
+export function checkSliderCaptchaApi(data: {
+  captchaType: 'blockPuzzle';
+  pointJson: string;
+  token: string;
+}) {
+  return baseRequestClient.post<AuthApi.SliderCaptchaResponse>(
+    '/system/captcha/check',
+    data,
+  );
+}
+
+export function sendLoginSmsCodeApi(data: AuthApi.SendSmsCodePayload) {
+  return requestClient.post<AuthApi.SendSmsCodeResult>('/login/sms-code', data);
+}
+
+export async function smsLoginApi(data: AuthApi.SmsLoginPayload) {
+  const token = await requestClient.post<AuthApi.FastApiToken>(
+    '/login/sms',
+    data,
+  );
+  return {
+    accessToken: token.access_token,
+  };
+}
+
+export function sendRegistrationEmailCodeApi(data: RegistrationEmailCodeRequest) {
+  return requestClient.post<RegistrationEmailCodeSent>('/login/registration/email-code', data);
+}
+
+export function checkRegistrationTenantCodeApi(tenantCode: string) {
+  return requestClient.get<RegistrationTenantCodeAvailability>('/login/registration/tenant-code-availability', { params: { tenant_code: tenantCode }, skipErrorMessage: true });
+}
+
+export function getRegistrationStatusApi() {
+  return requestClient.get<AuthApi.RegistrationStatusResult>(
+    '/login/registration/status',
+    { skipErrorMessage: true },
+  );
+}
+
+export async function registerTenantApi(
+  data: AuthApi.TenantRegistrationPayload,
+) {
+  const token = await requestClient.post<AuthApi.FastApiToken & { free_activation_key?: null | string }>(
+    '/login/register-tenant',
+    data,
+  );
+  return {
+    accessToken: token.access_token,
+    freeActivationKey: token.free_activation_key ?? null,
+  };
+}
+
+export function createQrCodeLoginApi(data: AuthApi.QrLoginCreatePayload) {
+  return requestClient.post<AuthApi.QrLoginChallenge>('/login/qr-code', data);
+}
+
+export function getQrCodeLoginStatusApi(
+  data: AuthApi.QrLoginStatusPayload,
+) {
+  return requestClient.post<AuthApi.QrLoginStatusResult>(
+    '/login/qr-code/status',
+    data,
+    { skipErrorMessage: true },
+  );
+}
+
+export function confirmQrCodeLoginApi(
+  data: AuthApi.QrLoginConfirmPayload,
+) {
+  return requestClient.post<AuthApi.QrLoginConfirmResult>(
+    '/login/qr-code/confirm',
+    data,
+  );
+}
+
+export async function exchangeQrCodeLoginApi(
+  data: AuthApi.QrLoginExchangePayload,
+) {
+  const token = await requestClient.post<AuthApi.FastApiToken>(
+    '/login/qr-code/exchange',
+    data,
+    { skipErrorMessage: true },
+  );
+  return { accessToken: token.access_token };
+}
+
+export function getEnterpriseOidcStatusApi() {
+  return requestClient.get<AuthApi.EnterpriseOidcStatus>(
+    '/login/enterprise-oidc/status',
+    { skipErrorMessage: true },
+  );
+}
+
+export function getGoogleBindingApi() {
+  return requestClient.get<{ eligible: boolean; bound: boolean; email: null | string }>('/users/me/google-binding');
+}
+
+export function startGoogleBindingApi(currentPassword: string, mfaCode?: string) {
+  return requestClient.post<{ authorization_url: string }>('/users/me/google-binding/start', { current_password: currentPassword, ...(mfaCode ? { mfa_code: mfaCode } : {}) }, { skipErrorMessage: true });
+}
+
+export async function exchangeEnterpriseOidcTicketApi(ticket: string) {
+  const token = await requestClient.post<AuthApi.FastApiToken>(
+    '/login/enterprise-oidc/exchange',
+    { ticket },
+  );
+  return { accessToken: token.access_token };
+}
+
+export function resetPasswordApi(data: AuthApi.ResetPasswordPayload) {
+  return requestClient.post<AuthApi.MessageResult>('/reset-password', data);
+}
+
+/**
+ * 获取用户权限码
+ */
+export async function getAccessCodesApi() {
+  return await getMyPermissionsApi();
+}
+
+export function sendPasswordRecoveryCodeApi(data: PasswordRecoverySend) {
+  return requestClient.post<RegistrationEmailCodeSent>('/password-recovery/email-code', data);
+}
+export function verifyPasswordRecoveryCodeApi(data: PasswordRecoveryVerify) {
+  return requestClient.post<PasswordRecoveryProof>('/password-recovery/verify-code', data);
+}
+export function completePasswordRecoveryApi(data: PasswordRecoveryReset) {
+  return requestClient.post<Message>('/password-recovery/reset', data);
+}

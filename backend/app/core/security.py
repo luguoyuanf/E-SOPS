@@ -1,0 +1,47 @@
+import uuid
+from datetime import UTC, datetime, timedelta
+from typing import Any, Literal
+
+import jwt
+from pwdlib import PasswordHash
+from pwdlib.hashers.argon2 import Argon2Hasher
+from pwdlib.hashers.bcrypt import BcryptHasher
+
+from app.core.config import settings
+
+password_hash = PasswordHash(
+    (
+        Argon2Hasher(),
+        BcryptHasher(),
+    )
+)
+
+
+ALGORITHM = "HS256"
+
+
+def create_access_token(
+    subject: str | Any,
+    expires_delta: timedelta,
+    token_id: str | None = None,
+    tenant_id: uuid.UUID | None = None,
+    client_kind: Literal["backoffice", "terminal"] = "backoffice",
+) -> str:
+    expire = datetime.now(UTC) + expires_delta
+    to_encode = {"exp": expire, "sub": str(subject), "client_kind": client_kind}
+    if token_id:
+        to_encode["jti"] = token_id
+    if tenant_id:
+        to_encode["tenant_id"] = str(tenant_id)
+    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+
+def verify_password(
+    plain_password: str, hashed_password: str
+) -> tuple[bool, str | None]:
+    return password_hash.verify_and_update(plain_password, hashed_password)
+
+
+def get_password_hash(password: str) -> str:
+    return password_hash.hash(password)

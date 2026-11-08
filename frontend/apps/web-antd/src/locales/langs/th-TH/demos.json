@@ -1,0 +1,14 @@
+{
+  "title": "เดโม",
+  "antd": "Ant Design Vue",
+  "vben": {
+    "title": "โครงการ",
+    "about": "เกี่ยวกับ",
+    "document": "เอกสาร",
+    "antdv": "Ant Design Vue รุ่น",
+    "antdv-next": "Antdv Next รุ่น",
+    "naive-ui": "Naive UI รุ่น",
+    "element-plus": "Element Plus รุ่น",
+    "tdesign": "TDesign Vue รุ่น"
+  }
+}

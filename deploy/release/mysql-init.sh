@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+mysql --protocol=socket -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" <<SQL
+CREATE USER IF NOT EXISTS 'esops_app'@'%' IDENTIFIED BY '${MYSQL_APP_PASSWORD}';
+GRANT SELECT, INSERT, UPDATE, DELETE ON \`${MYSQL_DATABASE}\`.* TO 'esops_app'@'%';
+FLUSH PRIVILEGES;
+SQL

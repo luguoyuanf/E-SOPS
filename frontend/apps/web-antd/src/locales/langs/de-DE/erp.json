@@ -1,0 +1,29 @@
+{
+  "units": {
+    "title": "Plattformeinheiten",
+    "description": "Plattform-Unit werden von allen Mandanten geteilt. Mandanten können sie ansehen und auswählen, ändern, deaktivieren oder löschen sie jedoch nicht.",
+    "source": "Unitquelle",
+    "platformReadonly": "Plattform · Nur anzeigen",
+    "tenantCustom": "Mandantenspezifisch",
+    "readonly": "Nur anzeigen",
+    "list": "Plattform-Unit-Liste",
+    "search": "Unit-Suche",
+    "searchPlaceholder": "Nach Code oder Name suchen",
+    "code": "Code",
+    "name": "Name",
+    "symbol": "Symbol",
+    "status": "Status",
+    "updatedAt": "Letzte Aktualisierung",
+    "operation": "Aktionen",
+    "create": "Plattform-Unit hinzufügen",
+    "edit": "Plattform-Unit bearbeiten",
+    "codeRequired": "Einen Code eingeben",
+    "nameRequired": "Einen Namen eingeben",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "saved": "Plattform-Unit gespeichert und an alle Tenants synchronisiert",
+    "forbidden": "Nur Plattform-Superadministratoren können gemeinsam verwendete Units verwalten"
+  }
+}

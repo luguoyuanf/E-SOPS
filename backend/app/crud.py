@@ -1,0 +1,169 @@
+import uuid
+from typing import Any
+
+from fastapi import HTTPException
+from sqlmodel import Session, select
+
+from app.core.clock import get_datetime_utc
+from app.core.security import get_password_hash, verify_password
+from app.core.tenancy import add_user_to_tenant, get_default_tenant
+from app.platform.core.identity_fields import normalize_username
+from app.platform.core.identity_models import (
+    User,
+    UserCreate,
+    UserSession,
+    UserUpdate,
+)
+from app.platform.core.tenancy_models import TenantMembership
+from app.platform.tenant_uow import PlatformTenantUnitOfWork
+
+
+def create_user(
+    *,
+    session: Session,
+    user_create: UserCreate,
+    tenant_id: uuid.UUID | None = None,
+) -> User:
+    if tenant_id is None:
+        default_tenant = get_default_tenant(session)
+        tenant_id = default_tenant.id if default_tenant else None
+    ensure_username_available(session=session, username=user_create.username, tenant_id=tenant_id)
+    db_obj = User(
+        **user_create.model_dump(exclude={"department_id", "hire_date", "password"}),
+        hashed_password=get_password_hash(user_create.password),
+    )
+    session.add(db_obj)
+    session.flush()
+    if tenant_id is not None:
+        add_user_to_tenant(
+            session=session,
+            user_id=db_obj.id,
+            tenant_id=tenant_id,
+            is_default=True,
+            department_id=user_create.department_id,
+            hire_date=user_create.hire_date,
+        )
+    session.commit()
+    session.refresh(db_obj)
+    return db_obj
+
+
+def update_user(*, session: Session, db_user: User, user_in: UserUpdate) -> Any:
+    user_data = user_in.model_dump(exclude_unset=True, exclude={"department_id", "hire_date"})
+    if "username" in user_data:
+        if user_data["username"] != db_user.username:
+            raise HTTPException(status_code=422, detail="Username cannot be changed")
+        user_data.pop("username")
+    extra_data = {}
+    if "password" in user_data:
+        password = user_data["password"]
+        hashed_password = get_password_hash(password)
+        extra_data["hashed_password"] = hashed_password
+    extra_data["updated_at"] = get_datetime_utc()
+    db_user.sqlmodel_update(user_data, update=extra_data)
+    if "password" in user_data:
+        if session.info.get("platform_tenant_id") is not None or session.info.get(
+            "platform_global_scope"
+        ):
+            revoke_user_sessions(session=session, user_id=db_user.id)
+        else:
+            # Verified recovery tokens resolve a global user before any tenant scope.
+            revoke_user_sessions_across_tenants(session=session, user_id=db_user.id)
+    session.add(db_user)
+    session.commit()
+    session.refresh(db_user)
+    return db_user
+
+
+def revoke_user_sessions(*, session: Session, user_id: uuid.UUID) -> None:
+    revoked_at = get_datetime_utc()
+    user_sessions = session.exec(
+        select(UserSession).where(
+            UserSession.user_id == user_id,
+            UserSession.revoked_at.is_(None),
+        )
+    ).all()
+    for user_session in user_sessions:
+        user_session.revoked_at = revoked_at
+        session.add(user_session)
+
+
+def revoke_user_sessions_across_tenants(
+    *, session: Session, user_id: uuid.UUID
+) -> None:
+    """Revoke a user's sessions when no request tenant has been authenticated."""
+    tenant_ids = session.exec(
+        select(TenantMembership.tenant_id).where(TenantMembership.user_id == user_id)
+    ).all()
+    for tenant_id in tenant_ids:
+        with PlatformTenantUnitOfWork(session, tenant_id, privileged=True):
+            revoke_user_sessions(session=session, user_id=user_id)
+            session.commit()
+
+
+def get_user_by_email(*, session: Session, email: str) -> User | None:
+    statement = select(User).where(User.email == email)
+    session_user = session.exec(statement).first()
+    return session_user
+
+
+def get_user_by_mobile(*, session: Session, mobile: str) -> User | None:
+    return session.exec(select(User).where(User.mobile == mobile)).first()
+
+
+# Dummy hash to use for timing attack prevention when user is not found
+# This is an Argon2 hash of a random password, used to ensure constant-time comparison
+DUMMY_HASH = "$argon2id$v=19$m=65536,t=3,p=4$MjQyZWE1MzBjYjJlZTI0Yw$YTU4NGM5ZTZmYjE2NzZlZjY0ZWY3ZGRkY2U2OWFjNjk"
+
+
+def authenticate(*, session: Session, email: str, password: str, tenant_id: uuid.UUID | None = None) -> User | None:
+    identifier = email.strip().lower()
+    db_user = (
+        get_user_by_email(session=session, email=identifier)
+        if "@" in identifier
+        else get_user_by_username(session=session, username=identifier, tenant_id=tenant_id)
+    )
+    if not db_user:
+        # Prevent timing attacks by running password verification even when user doesn't exist
+        # This ensures the response time is similar whether or not the email exists
+        verify_password(password, DUMMY_HASH)
+        return None
+    verified, updated_password_hash = verify_password(password, db_user.hashed_password)
+    if not verified:
+        return None
+    if updated_password_hash:
+        db_user.hashed_password = updated_password_hash
+        db_user.updated_at = get_datetime_utc()
+        session.add(db_user)
+        session.commit()
+        session.refresh(db_user)
+    return db_user
+
+
+def get_user_by_username(*, session: Session, username: str, tenant_id: uuid.UUID | None = None) -> User | None:
+    if tenant_id is not None:
+        return session.exec(
+            select(User).join(TenantMembership, TenantMembership.user_id == User.id).where(
+                TenantMembership.tenant_id == tenant_id,
+                TenantMembership.username == username,
+            )
+        ).first()
+    users = session.exec(select(User).where(User.username == username).limit(2)).all()
+    return users[0] if len(users) == 1 else None
+
+
+def ensure_username_available(
+    *, session: Session, username: str | None, exclude_id: uuid.UUID | None = None,
+    tenant_id: uuid.UUID | None = None,
+) -> None:
+    username = normalize_username(username)
+    if username is not None:
+        if tenant_id is None:
+            statement = select(User).where(User.username == username)
+            if exclude_id is not None:
+                statement = statement.where(User.id != exclude_id)
+            existing = session.exec(statement).first()
+        else:
+            existing = get_user_by_username(session=session, username=username, tenant_id=tenant_id)
+        if existing and existing.id != exclude_id:
+            raise HTTPException(status_code=409, detail="Username already exists")

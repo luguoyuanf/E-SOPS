@@ -1,0 +1,14 @@
+{
+  "fileName": "檔名",
+  "extension": "副檔名",
+  "contentType": "類型",
+  "size": "大小",
+  "storage": "儲存",
+  "public": "公開",
+  "uploadedAt": "上傳時間",
+  "download": "下載",
+  "item": "檔案",
+  "searchPlaceholder": "搜尋檔名、類型或副檔名",
+  "keyword": "關鍵詞",
+  "operation": "操作"
+}

@@ -1,0 +1,144 @@
+<script lang="ts" setup>
+import { createdRangeField, createdRangeQuery } from '#/utils/created-range';
+import type {
+  OnActionClickParams,
+  VxeTableGridOptions,
+} from '#/adapter/vxe-table';
+import type { UserMessageRecord } from '#/api';
+
+import { Page, useVbenModal } from '@vben/common-ui';
+
+import { Button, message } from 'ant-design-vue';
+
+import { useTenantVxeGrid as useVbenVxeGrid } from '#/adapter/vxe-table';
+import {
+  listMyMessagesApi,
+  markAllMessagesReadApi,
+  markMessageReadApi,
+} from '#/api';
+
+import { useColumns, useGridFormSchema } from './data';
+import Detail from './modules/detail.vue';
+
+const [DetailModal, detailModalApi] = useVbenModal({
+  connectedComponent: Detail,
+  destroyOnClose: true,
+});
+
+function onActionClick({ code, row }: OnActionClickParams<UserMessageRecord>) {
+  switch (code) {
+    case 'detail': {
+      void onDetail(row);
+      break;
+    }
+    case 'read': {
+      void onMarkRead(row);
+      break;
+    }
+  }
+}
+
+async function onDetail(row: UserMessageRecord) {
+  if (!row.is_read) {
+    try {
+      const updated = await markMessageReadApi(row.id);
+      Object.assign(row, updated);
+      detailModalApi.setData(updated).open();
+      onRefresh();
+      return;
+    } catch {
+      detailModalApi.setData(row).open();
+      return;
+    }
+  }
+  detailModalApi.setData(row).open();
+}
+
+async function onMarkRead(row: UserMessageRecord) {
+  const hideLoading = message.loading({
+    content: `正在标记 ${row.title}`,
+    duration: 0,
+    key: 'message_read',
+  });
+  try {
+    await markMessageReadApi(row.id);
+    message.success({
+      content: '消息已标记为已读',
+      key: 'message_read',
+    });
+    onRefresh();
+  } catch {
+    hideLoading();
+  }
+}
+
+async function onMarkAllRead() {
+  const hideLoading = message.loading({
+    content: '正在标记全部消息',
+    duration: 0,
+    key: 'message_read_all',
+  });
+  try {
+    await markAllMessagesReadApi();
+    message.success({
+      content: '全部消息已标记为已读',
+      key: 'message_read_all',
+    });
+    onRefresh();
+  } catch {
+    hideLoading();
+  }
+}
+
+const [Grid, gridApi] = useVbenVxeGrid({
+  formOptions: {
+    schema: [...useGridFormSchema(), createdRangeField],
+    submitOnChange: true,
+  },
+  gridOptions: {
+    columns: useColumns(onActionClick),
+    height: 'auto',
+    keepSource: true,
+    proxyConfig: {
+      ajax: {
+        query: async ({ page }, formValues) => {
+          return await listMyMessagesApi({
+            ...createdRangeQuery(formValues.created_range),
+            is_read:
+              formValues.is_read === undefined || formValues.is_read === null
+                ? undefined
+                : formValues.is_read,
+            page: page.currentPage,
+            page_size: page.pageSize,
+          });
+        },
+      },
+    },
+    rowConfig: {
+      keyField: 'id',
+    },
+    toolbarConfig: {
+      custom: true,
+      export: false,
+      refresh: true,
+      search: true,
+      zoom: true,
+    },
+  } as VxeTableGridOptions<UserMessageRecord>,
+});
+
+function onRefresh() {
+  gridApi.query();
+}
+</script>
+
+<template>
+  <Page auto-content-height>
+    <DetailModal />
+    <Grid table-title="消息列表">
+      <template #toolbar-tools>
+        <Button @click="onMarkAllRead">全部已读</Button>
+      </template>
+    </Grid>
+  </Page>
+</template>

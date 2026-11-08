@@ -1,0 +1,5 @@
+name: esop
+modules:
+  - platform
+  - erp
+  - esop

@@ -1,0 +1,29 @@
+{
+  "units": {
+    "title": "Đơn vị nền tảng",
+    "description": "Các đơn vị của nền tảng được chia sẻ giữa tất cả các thuê bao. Thuê bao có thể xem và chọn chúng nhưng không thể thay đổi, vô hiệu hóa hoặc xóa chúng. Thuê bao có thể thêm các đơn vị đặc biệt của riêng họ.",
+    "source": "Nguồn đơn vị",
+    "platformReadonly": "PLATFORM · Chỉ đọc",
+    "tenantCustom": "Tenant tùy chỉnh",
+    "readonly": "Chỉ đọc",
+    "list": "Danh sách đơn vị platform",
+    "search": "Tìm đơn vị",
+    "searchPlaceholder": "Tìm theo mã hoặc tên",
+    "code": "Mã hóa",
+    "name": "Tên",
+    "symbol": "Biểu tượng",
+    "status": "Trạng thái",
+    "updatedAt": "Cập nhật cuối cùng",
+    "operation": "Hành động",
+    "create": "Thêm đơn vị platform",
+    "edit": "Sửa đơn vị platform",
+    "codeRequired": "Nhập mã",
+    "nameRequired": "Nhập tên",
+    "active": "Hoạt động",
+    "inactive": "Không hoạt động",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "saved": "Đơn vị platform đã được lưu và đồng bộ hóa đến tất cả các tenant",
+    "forbidden": "Chỉ các quản trị viên platform có quyền quản lý đơn vị chia sẻ"
+  }
+}

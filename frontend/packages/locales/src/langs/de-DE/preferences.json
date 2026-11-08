@@ -1,0 +1,233 @@
+{
+  "title": "Einstellungen",
+  "subtitle": "Einstellungen anpassen und live voranschauen",
+  "enableStickyPreferencesNavigationBar": "Stabile Einstellungsleiste aktivieren",
+  "disableStickyPreferencesNavigationBar": "Stabile Einstellungsleiste deaktivieren",
+  "resetTip": "Daten wurden geändert, klicken Sie zur Zurücksetzung",
+  "resetTitle": "Einstellungen zurückschalten",
+  "resetSuccess": "Einstellungen erfolgreich zurückgesetzt",
+  "appearance": "Anzeige",
+  "layout": "Bereich",
+  "content": "Inhalt",
+  "other": "Andere",
+  "wide": "Breit",
+  "compact": "fest",
+  "followSystem": "Systementsprechen",
+  "vertical": "Vertikal",
+  "verticalTip": "Seitliche vertikales Menü-Modus",
+  "horizontal": "Horizontal",
+  "horizontalTip": "Horizontales Menü-Modus, alle Menüs am oberen Rand angezeigt",
+  "twoColumn": "Zweispaltig",
+  "twoColumnTip": "Vertikales Zweispaltiges Menü-Modus",
+  "headerSidebarNav": "Header Vertikal",
+  "headerSidebarNavTip": "Header Full Width, Seitennavigationsmodus",
+  "headerTwoColumn": "Überschrift Zweispaltig",
+  "headerTwoColumnTip": "Überschrift Navigationsleiste & Seitenleiste Zweispaltig co-existieren",
+  "mixedMenu": "Mischte Menü",
+  "mixedMenuTip": "Vertikales & Horizontales Menü co-existieren",
+  "fullContent": "Volles Inhaltsfeld",
+  "fullContentTip": "Nur Inhaltskörper anzeigen, Menüs verstecken",
+  "normal": "Normal",
+  "plain": "Einfach",
+  "rounded": "Eingerundet",
+  "copyPreferences": " kopieren Präferenzen",
+  "enableCopyPreferences": "Präferenzeneinstellungen anzeigen",
+  "copyPreferencesSuccessTitle": "Kopieren erfolgreich",
+  "copyPreferencesSuccess": "Kopieren erfolgreich, bitte überschreiben in `src/preferences.ts` unter app",
+  "clearAndLogout": "Cache löschen & Abmelden",
+  "mode": "Modus",
+  "general": "Allgemein",
+  "language": "Sprache",
+  "timezone": "Uhrzeit",
+  "dynamicTitle": "Dynamischer Titel",
+  "watermark": "Wasserzeichen",
+  "watermarkContent": "Bitte Wasserzeichen-Inhalt eingeben",
+  "checkUpdates": "Periodischer Aktualisierungscheck",
+  "position": {
+    "title": "Einstellungen-Position",
+    "header": "Header",
+    "auto": "Auto",
+    "fixed": "fest",
+    "userDropdown": "Benutzer-Menü"
+  },
+  "sidebar": {
+    "buttons": "Tasten anzeigen",
+    "buttonFixed": "fest",
+    "buttonCollapsed": "Eingezogen",
+    "title": "Seitenleiste",
+    "width": "Breite",
+    "visible": "Seitenleiste anzeigen",
+    "draggable": "Seitenleiste ziehen",
+    "collapsed": "Menü zusammenklappen",
+    "collapsedShowTitle": "Menütitel anzeigen",
+    "autoActivateChild": "Untermenü automatisch aktivieren",
+    "autoActivateChildTip": "`Aktiviert`, um das Untermenü beim Klicken des Menüs zu aktivieren.",
+    "expandOnHover": "Auf Hover ausklappen",
+    "expandOnHoverTip": "Wenn der Mauszeiger über das Menü fährt, \n `Aktiviert`, um die unteren Menüeinträge auszuklappen \n `Deaktiviert`, um das gesamte Sidebar auszuklappen."
+  },
+  "tabbar": {
+    "title": "Tab-Fenster",
+    "enable": "Tab-Fenster aktivieren",
+    "icon": "Zeige Symbol in Registerkartenleisten",
+    "showMore": "Zeige Mehr-Knopf",
+    "showMaximize": "Zeige Maximieren-Knopf",
+    "persist": "Registerkarten speichern",
+    "visitHistory": "BROWSERVERECHTLICHERGESCHICHTE",
+    "visitHistoryTip": "Wenn aktiviert, wird die Registerkartenleiste die Besuchsgeschichte der Registerkarten aufzeichnen. \nSchließen der aktuellen Registerkarte wählt automatisch die letzte geöffnete Registerkarte aus.",
+    "maxCount": "Maximale Anzahl von Registerkarten",
+    "maxCountTip": "Wenn die Anzahl der Registerkarten den maximalen Wert überschreitet,\nwird das älteste Registerkartenfenster geschlossen.\nSetzen auf 0 um die Anzahl der Registerkarten zu deaktivieren.",
+    "draggable": "Aktiviere Dragabble Reihenfolge",
+    "wheelable": "Unterstütze Mausrad-Bewegungen",
+    "middleClickClose": "Fenster schließen, wenn der mittlere Maustaste geklickt wird",
+    "wheelableTip": "Wenn aktiviert, reagiert die Registerkartenbereich auf vertikale Scrollereignisse des Mäuserades.",
+    "styleType": {
+      "title": "Registerkarten-Stil",
+      "chrome": "Chrome",
+      "card": "Karte",
+      "plain": "Einfach",
+      "brisk": "Leicht"
+    },
+    "contextMenu": {
+      "reload": "Neu Laden",
+      "close": "Schließen",
+      "pin": "Festlegen",
+      "unpin": "Entfernen",
+      "closeLeft": "Links liegende Registerkarten schließen",
+      "closeRight": "Rechts liegende Registerkarten schließen",
+      "closeOther": "Andere Registerkarten schließen",
+      "closeAll": "Alle Registerkarten schließen",
+      "openInNewWindow": "In neuem Fenster öffnen",
+      "maximize": "Maximieren",
+      "restoreMaximize": "Wiederherstellen"
+    }
+  },
+  "navigationMenu": {
+    "title": "Navigationsmenü",
+    "style": "Stil des Navigationsmenüs",
+    "accordion": "Seitenleistenakkordionsmenü",
+    "split": "Navigationsmenü-Separator",
+    "splitTip": "Wenn aktiviert, wird das Seitenmenü die Untermenu des oberen Bereichs anzeigen"
+  },
+  "breadcrumb": {
+    "title": "Breadcrumbs",
+    "home": "Startseite-Button anzeigen",
+    "enable": "Breadcrumbs aktivieren",
+    "icon": "Breadcrumbs-Symbol anzeigen",
+    "background": "Hintergrund",
+    "style": "Breadcrumbs-Stil",
+    "hideOnlyOne": "Versteckt wenn nur einer"
+  },
+  "animation": {
+    "title": "Animation",
+    "loading": "Seite lädt",
+    "transition": "Seitenumwandlung",
+    "progress": "Seitenvorgang"
+  },
+  "theme": {
+    "title": "Thema",
+    "radius": "Radius",
+    "fontSize": "Schriftgröße",
+    "fontSizeTip": "Ändere die globale Schriftgröße mit realzeitvorschaug",
+    "light": "Dunkel",
+    "dark": "Dunkel",
+    "darkSidebar": "Semi Dunkel Sidebar",
+    "darkSidebarTip": "Er kann aktiviert werden, wenn das Thema hell ist und der Layouttyp weder 'Horizontal' noch 'Volles Inhaltsfeld' ist.",
+    "darkSidebarSub": "Semi Dunkel Sidebar Sub",
+    "darkSidebarSubTip": "Er kann aktiviert werden, wenn das Thema hell ist, der Semi Dunkel Sidebar aktiviert ist und der Layouttyp 'Zweispaltig' ist.",
+    "darkHeader": "Semi Dunkel Header",
+    "weakMode": "Schwache Modus",
+    "grayMode": "Grauer Modus",
+    "builtin": {
+      "title": "Integriert",
+      "default": "Standard",
+      "violet": "Lila",
+      "pink": "Pink",
+      "rose": "ROS",
+      "skyBlue": "Himmelblau",
+      "deepBlue": "Dunkelblau",
+      "green": "Grün",
+      "deepGreen": "Tief Grün",
+      "orange": "Orange",
+      "yellow": "Gelb",
+      "zinc": "Zink",
+      "neutral": "Neutral",
+      "slate": "Steingrau",
+      "gray": "Grau",
+      "custom": "Anpassen"
+    }
+  },
+  "header": {
+    "title": "Header",
+    "visible": "Anzeigeheader anzeigen",
+    "modeStatic": "Statisch",
+    "modeFixed": "fest",
+    "modeAuto": "Auto Verstecken & Anzeigen",
+    "modeAutoScroll": "Scrollen zum Verstecken & Anzeigen",
+    "menuAlign": "Menü Ausrichtung",
+    "menuAlignStart": "Start",
+    "menuAlignEnd": "Ende",
+    "menuAlignCenter": "Zentrieren"
+  },
+  "footer": {
+    "title": "Fußzeile",
+    "visible": "Fußzeile anzeigen",
+    "fixed": "An der unteren Rand festgelegt"
+  },
+  "copyright": {
+    "title": "Urheberrecht",
+    "enable": "Urheberrecht aktivieren",
+    "companyName": "Firmenname",
+    "companySiteLink": "Firmenwebsite-Link",
+    "date": "Datum",
+    "icp": "ICP-Lizenznummer",
+    "icpLink": "ICP-Website-Link"
+  },
+  "shortcutKeys": {
+    "title": "Befehlskürzel",
+    "global": "Global",
+    "search": "Global-Suche",
+    "logout": "Abmelden",
+    "escape": "Aktuelles Fenster schließen",
+    "preferences": "Einstellungen"
+  },
+  "widget": {
+    "title": "Widget",
+    "globalSearch": "Global-Suche aktivieren",
+    "fullscreen": "Aktiviere Vollbildmodus",
+    "themeToggle": "Aktiviere Theme-Schaltflächen",
+    "languageToggle": "Aktiviere Sprachumschaltflächen",
+    "notification": "Aktiviere Benachrichtigungen",
+    "sidebarToggle": "Aktiviere Seitenleisten-Schaltflächen",
+    "lockScreen": "Aktiviere Schlossschirm",
+    "refresh": "Aktiviere Neuladen",
+    "timezone": "Aktiviere Zeitzone"
+  },
+  "antd": {
+    "tabLabel": "Antd Erweiterung",
+    "title": "Unternehmensvorlieben",
+    "fields": {
+      "enableFormFullscreen": {
+        "label": "Formular Vollbildmodus aktivieren",
+        "tip": "Unterprojekte können diese Erweiterungskonfiguration in ihren eigenen Geschäftsfällen einlesen."
+      },
+      "tenantMode": {
+        "label": "Mandantenmodus",
+        "options": {
+          "single": {
+            "label": "Einzelner Mandant"
+          },
+          "multi": {
+            "label": "Mehrfacher Mandanten"
+          }
+        }
+      },
+      "defaultTableSize": {
+        "label": "Standardseite Größe"
+      },
+      "reportTitle": {
+        "label": "Standardberichtstitel",
+        "placeholder": "Bitte geben Sie den Standardberichtstitel ein"
+      }
+    }
+  }
+}

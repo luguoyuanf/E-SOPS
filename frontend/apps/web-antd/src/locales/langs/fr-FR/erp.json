@@ -1,0 +1,29 @@
+{
+  "units": {
+    "title": "Unités de plateforme",
+    "description": "Les unités de plateforme sont partagées par tous les locataires. Les locataires peuvent les visualiser et les sélectionner, mais ne peuvent pas les modifier, les désactiver ou les supprimer.",
+    "source": "Source de l'unité",
+    "platformReadonly": "Plateforme · Lecture seule",
+    "tenantCustom": "Locataire personnalisé",
+    "readonly": "Lecture seule",
+    "list": "Liste des unités de plateforme",
+    "search": "Recherche d'unité",
+    "searchPlaceholder": "Rechercher par code ou nom",
+    "code": "Code",
+    "name": "Nom",
+    "symbol": "Symbole",
+    "status": "Statut",
+    "updatedAt": "Mise à jour",
+    "operation": "Actions",
+    "create": "Ajouter une unité de plateforme",
+    "edit": "Modifier une unité de plateforme",
+    "codeRequired": "Entrer un code",
+    "nameRequired": "Entrer un nom",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "saved": "Unité de plateforme enregistrée et synchronisée avec tous les locataires",
+    "forbidden": "Seul les super administrateurs de plateforme peuvent gérer les unités partagées"
+  }
+}

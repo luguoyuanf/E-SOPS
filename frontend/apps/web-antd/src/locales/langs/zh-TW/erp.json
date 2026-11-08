@@ -1,0 +1,29 @@
+{
+  "units": {
+    "title": "平臺單位管理",
+    "description": "平臺統一維護的單位供所有租戶使用。租戶只能檢視和選擇，不能修改、停用或刪除；特殊單位可由租戶自行新增。",
+    "source": "單位來源",
+    "platformReadonly": "平臺統一 · 只讀",
+    "tenantCustom": "租戶自建",
+    "readonly": "僅可使用",
+    "list": "平臺單位列表",
+    "search": "單位檢索",
+    "searchPlaceholder": "請輸入編碼或名稱",
+    "code": "編碼",
+    "name": "名稱",
+    "symbol": "單位符號",
+    "status": "狀態",
+    "updatedAt": "最近更新",
+    "operation": "操作",
+    "create": "新增平臺單位",
+    "edit": "編輯平臺單位",
+    "codeRequired": "請輸入編碼",
+    "nameRequired": "請輸入名稱",
+    "active": "啟用",
+    "inactive": "停用",
+    "cancel": "取消",
+    "save": "儲存",
+    "saved": "平臺單位已儲存，並同步至所有租戶",
+    "forbidden": "僅平臺超級管理員可管理統一單位"
+  }
+}

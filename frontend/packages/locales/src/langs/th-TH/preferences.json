@@ -1,0 +1,233 @@
+{
+  "title": "ตั้งค่า",
+  "subtitle": "ปรับแต่งความต้องการและตรวจสอบในเวลาจริง",
+  "enableStickyPreferencesNavigationBar": "เปิดใช้งานบาร์นำทางตั้งค่าที่ยึด",
+  "disableStickyPreferencesNavigationBar": "ปิดใช้งานบาร์นำทางตั้งค่าที่ยึด",
+  "resetTip": "ข้อมูลได้เปลี่ยนแปลงแล้ว คลิกเพื่อเริ่มต้นใหม่",
+  "resetTitle": "รีเซ็ตตั้งค่า",
+  "resetSuccess": "การตั้งค่าถูกเริ่มต้นใหม่สำเร็จ",
+  "appearance": " appearnce ",
+  "layout": " layout ",
+  "content": " content ",
+  "other": " อื่นๆ ",
+  "wide": " กว้าง ",
+  "compact": " คงที่ ",
+  "followSystem": " ตามระบบ ",
+  "vertical": "แนวตั้ง",
+  "verticalTip": "โหมดเมนูแนวตั้งข้าง",
+  "horizontal": "แนวนอน",
+  "horizontalTip": "โหมดเมนูแนวนอน ทั้งหมดแสดงที่ด้านบน",
+  "twoColumn": "สองคอลัมน์",
+  "twoColumnTip": "โหมดเมนูคอลัมน์แนวตั้งสองคอลัมน์",
+  "headerSidebarNav": "หัวแนวตั้ง",
+  "headerSidebarNavTip": "หัวเต็มความกว้าง โหมดนำทางข้าง",
+  "headerTwoColumn": "หัวข้อสองคอลัมน์",
+  "headerTwoColumnTip": "หัวข้อการนำทางและแทร็กเกอร์สองคอลัมน์อยู่ร่วมกัน",
+  "mixedMenu": "เมนูที่มิกซ์กัน",
+  "mixedMenuTip": "เมนูแนวตั้งและแนวนอนอยู่ร่วมกัน",
+  "fullContent": "เนื้อหาเต็มหน้า",
+  "fullContentTip": "แสดงเฉพาะเนื้อหา body ซ่อนทุกเมนู",
+  "normal": "ปกติ",
+  "plain": "ธรรมดา",
+  "rounded": "มุมกลม",
+  "copyPreferences": "คัดลอกความตั้งใจ",
+  "enableCopyPreferences": "แสดงปุ่มคัดลอกความตั้งใจ",
+  "copyPreferencesSuccessTitle": "คัดลอกสำเร็จ",
+  "copyPreferencesSuccess": "คัดลอกสำเร็จ กรุณาแก้ไขใน `src/preferences.ts` ภายใต้แอพ",
+  "clearAndLogout": "ล้างแคชและออกจากระบบ",
+  "mode": "โหมด",
+  "general": "ทั่วไป",
+  "language": "ภาษา",
+  "timezone": "เขตเวลา",
+  "dynamicTitle": "ชื่อหัวเรื่องที่มีความยืดหยุ่น",
+  "watermark": "ลายเซ็น",
+  "watermarkContent": "กรุณาใส่เนื้อหาของลายเซ็น",
+  "checkUpdates": "การตรวจสอบอัปเดตประจำช่วงเวลา",
+  "position": {
+    "title": "ตำแหน่งของตั้งค่า",
+    "header": "หัวข้อ",
+    "auto": "อัตโนมัติ",
+    "fixed": " คงที่ ",
+    "userDropdown": "เมนูผู้ใช้"
+  },
+  "sidebar": {
+    "buttons": "แสดงปุ่ม",
+    "buttonFixed": " คงที่ ",
+    "buttonCollapsed": "พับเข้า",
+    "title": "แท็บข้าง",
+    "width": "ความกว้าง",
+    "visible": "แสดงแท็บข้าง",
+    "draggable": "ลากแท็บข้าง",
+    "collapsed": "ปิดเมนู",
+    "collapsedShowTitle": "แสดงชื่อเมนู",
+    "autoActivateChild": "เปิดใช้งานเมนูย่อย",
+    "autoActivateChildTip": "`เปิดใช้งาน` เพื่อให้เมนูย่อยทำงานเมื่อคลิก",
+    "expandOnHover": "ขยายเมื่อเมาส์อยู่เหนือ",
+    "expandOnHoverTip": "เมื่อเมาส์อยู่เหนือเมนู, \n `เปิดใช้งาน` เพื่อขยายเมนูย่อย \n `ปิดใช้งาน` เพื่อขยายแทร็กซ์เต็มๆ"
+  },
+  "tabbar": {
+    "title": "แทร็กบาร์",
+    "enable": "เปิดใช้งานแทร็กบาร์",
+    "icon": "แสดงไอคอนแท็บบาร์",
+    "showMore": "แสดงปุ่มเพิ่มเติม",
+    "showMaximize": "แสดงปุ่มขยาย",
+    "persist": "เก็บแท็บ",
+    "visitHistory": "ประวัติแท็บ",
+    "visitHistoryTip": "เมื่อเปิดใช้งาน แท็บบาร์จะบันทึกประวัติการเปิดแท็บ \nการปิดแท็บปัจจุบันจะเลือกแท็บที่เปิดล่าสุดอัตโนมัติ",
+    "maxCount": "จำนวนแท็บสูงสุด",
+    "maxCountTip": "เมื่อจำนวนแท็บเกินกว่าที่กำหนด,\nแท็บที่เก่าที่สุดจะถูกปิด.\nตั้งค่าเป็น 0 เพื่อปิดการตรวจสอบจำนวน",
+    "draggable": "เปิดใช้งานการดึงและปล่อยให้เรียงลำดับ",
+    "wheelable": "สนับสนุนการเลื่อนเมาส์",
+    "middleClickClose": "ปิดแท็บเมื่อคลิกปุ่มกลางเมาส์",
+    "wheelableTip": "เมื่อเปิดใช้งาน บริเวณแท็บบาร์จะตอบสนองต่อเหตุการณ์การเลื่อนขึ้น-ลงของเมาส์",
+    "styleType": {
+      "title": "สไตล์แท็บ",
+      "chrome": "ชาร์ม",
+      "card": "บัตร",
+      "plain": "ธรรมดา",
+      "brisk": "กระชับ"
+    },
+    "contextMenu": {
+      "reload": "โหลดใหม่",
+      "close": "ปิด",
+      "pin": "ยึด",
+      "unpin": "ยกเลิกการยึด",
+      "closeLeft": "ปิดแท็บซ้าย",
+      "closeRight": "ปิดแท็บขวา",
+      "closeOther": "ปิดแท็บอื่นๆ",
+      "closeAll": "ปิดแท็บทั้งหมด",
+      "openInNewWindow": "เปิดในหน้าต่างใหม่",
+      "maximize": "ขยายเต็มหน้าต่าง",
+      "restoreMaximize": "ปรับกลับ"
+    }
+  },
+  "navigationMenu": {
+    "title": "เมนูนำทาง",
+    "style": "สไตล์เมนูนำทาง",
+    "accordion": "แทร็กซ์บาร์แบบพับ",
+    "split": "การแบ่งปิดกั้นเมนูนำทาง",
+    "splitTip": "เมื่อเปิดใช้งาน แทร็กซ์บาร์จะแสดงเมนูย่อยของบาร์ด้านบน"
+  },
+  "breadcrumb": {
+    "title": "ปุ่มกลับไปยังหน้าหลัก",
+    "home": "แสดงปุ่มหน้าหลัก",
+    "enable": "เปิดใช้งานปุ่มกลับไปยังหน้าหลัก",
+    "icon": "แสดงไอคอนปุ่มกลับไปยังหน้าหลัก",
+    "background": "พื้นหลัง",
+    "style": "สไตล์ปุ่มกลับไปยังหน้าหลัก",
+    "hideOnlyOne": "ซ่อนเมื่อมีเพียงหนึ่งเดียว"
+  },
+  "animation": {
+    "title": "การเคลื่อนไหว",
+    "loading": "การโหลดหน้า",
+    "transition": "การเปลี่ยนผ่านหน้า",
+    "progress": "ความ�ันจ์การโหลด"
+  },
+  "theme": {
+    "title": "ธีม",
+    "radius": "รัศมี",
+    "fontSize": "ขนาดตัวอักษร",
+    "fontSizeTip": "ปรับขนาดตัวอักษรทั่วไปพร้อมการพรีวิวแบบเรียลไทม์",
+    "light": "สว่าง",
+    "dark": "มืด",
+    "darkSidebar": "บาร์ข้าง Semi Dark",
+    "darkSidebarTip": "สามารถเปิดใช้งานได้เมื่อธีมเป็นสีสว่าง และการจัดเรียงไม่ใช่ 'แนวนอน' หรือ 'เต็มเนื้อหา'",
+    "darkSidebarSub": "บาร์ข้าง Semi Dark Sub",
+    "darkSidebarSubTip": "สามารถเปิดใช้งานได้เมื่อธีมเป็นสีสว่าง บาร์ข้าง Semi Dark ถูกเปิดใช้งาน และการจัดเรียงใช้ 'เมนูสองคอลัมน์'",
+    "darkHeader": "หัว Semi Dark",
+    "weakMode": "โหมดอ่อน",
+    "grayMode": "โหมดเทา",
+    "builtin": {
+      "title": "บูทีน",
+      "default": "ค่าเริ่มต้น",
+      "violet": "ม่วง",
+      "pink": "ชมพู",
+      "rose": "พีช",
+      "skyBlue": "ฟ้า",
+      "deepBlue": "น้ำเงินเข้ม",
+      "green": "เขียว",
+      "deepGreen": "เขียวเข้ม",
+      "orange": "ส้ม",
+      "yellow": "เหลือง",
+      "zinc": "ซิลเวอร์",
+      "neutral": "กลาง",
+      "slate": "สลีต",
+      "gray": "เทา",
+      "custom": "กำหนดเอง"
+    }
+  },
+  "header": {
+    "title": "หัวข้อ",
+    "visible": "แสดงหัวข้อ",
+    "modeStatic": "สถิต",
+    "modeFixed": " คงที่ ",
+    "modeAuto": "ซ่อนและแสดงอัตโนมัติ",
+    "modeAutoScroll": "พับเมื่อเลื่อน",
+    "menuAlign": "ตำแหน่งเมนู",
+    "menuAlignStart": "เริ่มต้น",
+    "menuAlignEnd": "สิ้นสุด",
+    "menuAlignCenter": "ศูนย์กลาง"
+  },
+  "footer": {
+    "title": "ช่วงล่าง",
+    "visible": "แสดงช่วงล่าง",
+    "fixed": "แนบอยู่ที่ด้านล่าง"
+  },
+  "copyright": {
+    "title": "ลิขสิทธิ์",
+    "enable": "เปิดใช้งานลิขสิทธิ์",
+    "companyName": "ชื่อบริษัท",
+    "companySiteLink": "ลิงค์เว็บไซต์บริษัท",
+    "date": "วันที่",
+    "icp": "หมายเลขอนุญาตICP",
+    "icpLink": "ลิงค์เว็บไซต์ICP"
+  },
+  "shortcutKeys": {
+    "title": "ปุ่มสั้น",
+    "global": "ทั่วโลก",
+    "search": "ค้นหาทั่วโลก",
+    "logout": "ออกจากระบบ",
+    "escape": "ปิดหน้าต่างปัจจุบัน",
+    "preferences": "ตั้งค่า"
+  },
+  "widget": {
+    "title": "วิชวล",
+    "globalSearch": "เปิดค้นหาทั่วโลก",
+    "fullscreen": "เปิดใช้งานโหมดเต็มหน้าจอ",
+    "themeToggle": "เปิดใช้งานการสลับธีม",
+    "languageToggle": "เปิดใช้งานการสลับภาษา",
+    "notification": "เปิดใช้งานการแจ้งเตือน",
+    "sidebarToggle": "เปิดใช้งานการสลับแท็บข้าง",
+    "lockScreen": "เปิดใช้งานการล็อกหน้าจอ",
+    "refresh": "เปิดใช้งานการรีเฟรช",
+    "timezone": "เปิดใช้งานเวลาท้องถิ่น"
+  },
+  "antd": {
+    "tabLabel": "แอดแอนด์ต่อเติม",
+    "title": "ความชื่นชอบทางธุรกิจ",
+    "fields": {
+      "enableFormFullscreen": {
+        "label": "เปิดใช้งานโหมดเต็มหน้าจอแบบฟอร์ม",
+        "tip": "โครงการย่อยสามารถอ่านการกำหนดค่าของต่อเติมนี้ในสถานการณ์ธุรกิจของตนเอง"
+      },
+      "tenantMode": {
+        "label": "โหมดเจ้าของที่พัก",
+        "options": {
+          "single": {
+            "label": "เจ้าของที่พักเดียว"
+          },
+          "multi": {
+            "label": "เจ้าของที่พักหลาย"
+          }
+        }
+      },
+      "defaultTableSize": {
+        "label": "ขนาดหน้าจอที่กำหนดไว้เป็นค่าเริ่ติ"
+      },
+      "reportTitle": {
+        "label": "ชื่อรายงาน deafult",
+        "placeholder": "กรุณาใส่ชื่อรายงาน deafult"
+      }
+    }
+  }
+}

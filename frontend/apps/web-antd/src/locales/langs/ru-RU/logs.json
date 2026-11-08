@@ -1,0 +1,25 @@
+{
+  "login": {
+    "user": "Пользователь",
+    "ip": "Адрес IP",
+    "status": "Статус",
+    "failureReason": "Причина сбоя",
+    "userAgent": "Браузер",
+    "createdAt": "Время входа"
+  },
+  "common": {
+    "keyword": "Ключевое слово"
+  },
+  "operation": {
+    "requestMethod": "Метод запроса",
+    "user": "Пользователь",
+    "module": "Модуль",
+    "action": "Действие",
+    "method": "Метод",
+    "path": "Путь запроса",
+    "statusCode": "Код состояния",
+    "durationMs": "Продолжительность (мс)",
+    "ip": "Адрес IP",
+    "createdAt": "Время операции"
+  }
+}

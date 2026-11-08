@@ -1,0 +1,14 @@
+{
+  "fileName": "Dateiname",
+  "extension": "Erweiterung",
+  "contentType": "Typ",
+  "size": "Größe",
+  "storage": "Speicher",
+  "public": "Publik",
+  "uploadedAt": "Hochgeladen Am",
+  "download": "Herunterladen",
+  "item": "Datei",
+  "searchPlaceholder": "Dateiname, Typ oder Erweiterung suchen",
+  "keyword": "Schlüsselwort",
+  "operation": "Aktionen"
+}

@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "login": "Đăng Nhập",
+    "register": "Đăng ký",
+    "codeLogin": "Mã đăng nhập",
+    "qrcodeLogin": "Đăng nhập bằng mã QR",
+    "forgetPassword": "Quên mật khẩu",
+    "profile": "Hồ sơ"
+  },
+  "dashboard": {
+    "title": "Trang tổng quan",
+    "analytics": "Thống kê",
+    "workspace": "Công việc"
+  }
+}

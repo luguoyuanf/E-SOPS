@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>下载 ESOPS 工位终端</title>
+  <meta name="description" content="下载 ESOPS Android 与 Ubuntu 工位终端安装包。">
+  <link rel="canonical" href="https://esops.cc/downloads">
+  <style>
+    :root{font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:#172b24;background:#f3f8f4;font-synthesis:none}*{box-sizing:border-box}body{margin:0}a{color:#087f5b;text-decoration:none}a:hover{text-decoration:underline}header{background:#fff;border-bottom:1px solid #e1ebe4}nav{margin:auto;min-height:84px;padding:12px 3%;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:24px;min-width:0}.logo{display:inline-block;width:190px;height:54px;position:relative;overflow:hidden;flex-shrink:0}.logo img{width:232px;max-width:none;height:auto;position:absolute;top:-21px;left:-21px}.brand span{font-size:18px;font-weight:600;color:#172230;white-space:nowrap}nav .links{display:flex;gap:24px;font-size:14px}main{max-width:1120px;margin:56px auto;padding:0 28px;display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}.intro{padding-top:52px}.intro p{color:#63786b;line-height:1.9;max-width:350px}.intro h2{font-size:38px;line-height:1.4;letter-spacing:-1px;margin:20px 0}.intro small{color:#47715c}.panel{background:#fff;padding:32px;border:1px solid #e0eae2;border-radius:16px}h1{font-size:26px;line-height:1.4;margin:0 0 12px}.hint,.help,#status{font-size:14px;color:#63786b;line-height:1.7}.package-card{display:grid;grid-template-columns:1fr auto;gap:5px 16px;align-items:center;padding:22px 0;border-bottom:1px solid #e4ebe6}.package-card strong{font-size:17px}.package-card span{font-size:13px;color:#63786b}.package-card button{grid-column:2;grid-row:1/3}button{font:inherit;font-size:14px;border:1px solid #087f5b;border-radius:6px;background:#087f5b;color:#fff;padding:9px 15px;cursor:pointer}button:hover:not(:disabled){background:#066947}button:disabled{background:#f1f4f2;color:#89958d;border-color:#dce5df;cursor:not-allowed}button:focus-visible,a:focus-visible{outline:3px solid #69b997;outline-offset:3px}#status{min-height:24px;margin:18px 0}#status[data-error=true]{color:#b42318}.help{margin-top:24px}.legal{font-size:13px;margin-bottom:0}footer{text-align:center;color:#7a8d80;font-size:12px;padding:0 20px 32px}.verifybox-close{padding:0;background:transparent;border:0}.verifybox-close:hover:not(:disabled){background:#e5f4eb}.verify-bar-area,.verify-move-block{box-sizing:content-box}@media(max-width:760px){nav{padding:10px 20px;min-height:72px}nav .links{gap:16px}.brand{gap:12px}.brand span{display:none}.logo{width:154px;height:44px}.logo img{width:188px;left:-17px;top:-17px}main{display:block;margin:28px auto;padding:0 16px}.intro{display:none}.panel{padding:24px}h1{font-size:24px}}@media(max-width:420px){.package-card{grid-template-columns:1fr}.package-card button{grid-column:1;grid-row:auto;margin-top:8px;justify-self:start}}
+  </style>
+</head>
+<body>
+  <header><nav><div class="brand"><a href="/" class="logo" aria-label="ESOPS 首页"><img src="/logo.png" alt="ESOPS" decoding="async"></a><span>电子作业指导书管理平台</span></div><div class="links"><a href="/">产品首页</a><a href="/auth/login">登录后台</a></div></nav></header>
+  <main>
+    <section class="intro"><small>ESOPS · 电子作业指导</small><h2>统一作业标准，<br>连接生产现场。</h2><p>从管理后台，到每一个作业终端。<br>SOP 文档、排产发布与员工报工，在同一个工作空间协同。</p></section>
+    <section class="panel" aria-labelledby="download-title">
+      <h1 id="download-title">下载 ESOPS 工位终端</h1>
+      <p class="hint">选择与设备系统和处理器匹配的安装包。点击下载后请完成拖动验证码。</p>
+      <div id="arm64" class="package-card"><strong>Android ARM64</strong><span>适用于 64 位 Android 工位终端 · APK</span><button type="button" data-architecture="arm64" disabled>加载中</button></div>
+      <div id="arm32" class="package-card"><strong>Android ARM32</strong><span>适用于 32 位 Android 工位终端 · APK</span><button type="button" data-architecture="arm32" disabled>加载中</button></div>
+      <div class="package-card"><strong>Windows x64</strong><span>适用于 64 位 Windows 设备，安装包尚未发布</span><button type="button" disabled>暂未提供</button></div>
+      <div id="ubuntuArm64" class="package-card"><strong>Ubuntu ARM64</strong><span>适用于 64 位 ARM Ubuntu 设备 · DEB</span><button type="button" data-architecture="ubuntuArm64" disabled>加载中</button></div>
+      <p id="status" role="status" aria-live="polite">正在获取安装包信息…</p>
+      <button id="retry" type="button" hidden>重新加载</button>
+      <noscript><p>页面内容已显示。验证和下载需要启用 JavaScript。</p></noscript>
+      <p class="help">不确定设备架构时，请联系设备管理员。安装前请确认设备允许安装企业应用。</p>
+      <details><summary>安装步骤与使用范围</summary><ol><li>Android 设备按处理器选择 ARM32 或 ARM64 APK，Ubuntu ARM64 设备选择 DEB。</li><li>完成拖拽验证后下载原始安装包。Android 按设备提示允许安装；Ubuntu 使用系统软件安装器或管理员认可的方式安装。</li><li>按管理后台的终端绑定流程接入工位，核对租户、工位与任务后再投入使用。</li></ol><p class="help">Web 工位从后台终端入口打开。首次接入、同步和报工需要联网，设备适配应现场验证。<a href="/guides/get-started">阅读完整实施说明</a> · <a href="/plans">免费范围与扩容</a></p></details>
+      <p class="legal"><a href="/privacy" target="_blank" rel="noopener">隐私权政策</a> · <a href="/terms" target="_blank" rel="noopener">服务条款</a></p>
+    </section>
+  </main>
+  <footer>Copyright © 2026 ESOPS · <a href="mailto:support@esops.cc">support@esops.cc</a></footer>
+  <div id="verification"></div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

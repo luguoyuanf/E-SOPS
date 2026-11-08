@@ -1,0 +1,235 @@
+import { spawnSync } from 'node:child_process';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const scriptDir = dirname(fileURLToPath(import.meta.url));
+const rootDir = resolve(scriptDir, '..');
+const backendDir = join(rootDir, 'backend');
+const frontendDir = join(rootDir, 'frontend');
+const generatedRoot = join(
+  frontendDir,
+  'apps/web-antd/src/api/generated',
+);
+const generatedModulePages = join(
+  frontendDir,
+  'apps/web-antd/src/router/generated-module-pages.ts',
+);
+const generatedBuildManifest = join(
+  frontendDir,
+  'apps/web-antd/src/modules/build-manifest.ts',
+);
+
+function run(command, args, options = {}) {
+  const result = spawnSync(command, args, {
+    cwd: rootDir,
+    encoding: 'utf8',
+    shell: options.shell ?? false,
+    stdio: options.capture ? 'pipe' : 'inherit',
+    ...options,
+  });
+
+  if (result.status !== 0) {
+    const detail = result.stderr || result.stdout || '';
+    throw new Error(`${command} ${args.join(' ')} failed\n${detail}`);
+  }
+
+  return result.stdout;
+}
+
+function getEdition() {
+  const editionFlag = process.argv.indexOf('--edition');
+  const edition =
+    editionFlag === -1 ? (process.env.APP_EDITION ?? 'suite') : process.argv[editionFlag + 1];
+  if (!edition || edition.startsWith('-')) {
+    throw new Error('--edition requires an edition name');
+  }
+  if (!/^[a-z][a-z0-9_-]*$/.test(edition)) {
+    throw new Error(`Invalid edition name: ${edition}`);
+  }
+  return edition;
+}
+
+function getManifestPath() {
+  const manifestFlag = process.argv.indexOf('--manifest');
+  if (manifestFlag === -1) {
+    return undefined;
+  }
+  const manifestPath = process.argv[manifestFlag + 1];
+  if (!manifestPath || manifestPath.startsWith('-')) {
+    throw new Error('--manifest requires a file path');
+  }
+  return resolve(rootDir, manifestPath);
+}
+
+function extractSpec(openapi, predicate) {
+  return {
+    ...openapi,
+    paths: Object.fromEntries(
+      Object.entries(openapi.paths).filter(([path]) => predicate(path)),
+    ),
+  };
+}
+
+function writeSpec(directory, name, spec) {
+  const path = join(directory, `${name}.json`);
+  writeFileSync(path, JSON.stringify(spec), 'utf8');
+  return path;
+}
+
+function generateClient(input, output, edition) {
+  run('pnpm', ['--dir', frontendDir, 'generate:api'], {
+    env: {
+      ...process.env,
+      APP_EDITION: edition,
+      OPENAPI_INPUT: input,
+      OPENAPI_OUTPUT: output,
+    },
+    shell: process.platform === 'win32',
+  });
+}
+
+const edition = getEdition();
+const manifestPath = getManifestPath();
+const serverFlag = process.argv.indexOf('--server-url');
+const serverUrl = serverFlag === -1 ? undefined : process.argv[serverFlag + 1];
+if (serverFlag !== -1 && (!serverUrl || serverUrl.startsWith('-'))) {
+  throw new Error('--server-url requires the running server origin');
+}
+if (serverUrl && manifestPath) {
+  throw new Error('--server-url and --manifest cannot be combined');
+}
+async function readServerJson(path) {
+  const response = await fetch(new URL(path, serverUrl), {
+    signal: AbortSignal.timeout(15000),
+  });
+  if (!response.ok) throw new Error(`Server contract request failed: ${response.status} ${path}`);
+  return await response.text();
+}
+const tempDirectory = mkdtempSync(join(tmpdir(), 'fast-vben-openapi-'));
+const manifestJson = serverUrl
+  ? await readServerJson('/api/v1/platform/modules/manifest')
+  : manifestPath
+  ? readFileSync(manifestPath, 'utf8')
+  : run(
+      'uv',
+      [
+        'run',
+        'python',
+        '-c',
+        'import json; from app.modules.manifest import build_manifest; print(json.dumps(build_manifest(edition="' +
+          edition +
+          '").model_dump()))',
+      ],
+      {
+        capture: true,
+        cwd: backendDir,
+        env: { ...process.env, APP_EDITION: edition },
+      },
+    );
+const manifest = JSON.parse(manifestJson);
+if (manifest.edition !== edition) {
+  throw new Error(`Manifest edition ${manifest.edition} does not match ${edition}`);
+}
+const prefixesJson = run(
+  'uv',
+  [
+    'run',
+    'python',
+    '-c',
+    'import json; from app.modules.registry import get_module_definitions; print(json.dumps({code: definition.api_prefix for code, definition in get_module_definitions().items()}))',
+  ],
+  {
+    capture: true,
+    cwd: backendDir,
+    env: { ...process.env, APP_EDITION: edition },
+  },
+);
+const prefixes = JSON.parse(prefixesJson);
+const openapiJson = serverUrl ? await readServerJson('/api/v1/openapi.json') : run(
+  'uv',
+  [
+    'run',
+    'python',
+    '-c',
+    'import json; from app.main import app; print(json.dumps(app.openapi(), ensure_ascii=False))',
+  ],
+  {
+    capture: true,
+    cwd: backendDir,
+    env: { ...process.env, APP_EDITION: edition },
+  },
+);
+const openapi = JSON.parse(openapiJson);
+if (serverUrl && manifestJson !== await readServerJson('/api/v1/platform/modules/manifest')) {
+  throw new Error('Server contract changed during generation; retry against a stable deployment');
+}
+const moduleCodes = manifest.modules
+  .map((module) => module.code)
+  .filter((code) => code !== 'platform');
+
+rmSync(generatedRoot, { force: true, recursive: true });
+mkdirSync(generatedRoot, { recursive: true });
+const modulePrefixes = moduleCodes.map((code) => prefixes[code]);
+const platformSpec = extractSpec(
+  openapi,
+  (path) => !modulePrefixes.some((prefix) => path.startsWith(prefix)),
+);
+const platformSpecPath = writeSpec(tempDirectory, 'platform', platformSpec);
+generateClient(platformSpecPath, join(generatedRoot, 'platform'), edition);
+writeFileSync(
+  join(generatedRoot, 'index.ts'),
+  "export * from './platform';\n",
+  'utf8',
+);
+writeFileSync(
+  generatedBuildManifest,
+  `export const buildManifest = ${JSON.stringify(manifest, null, 2)} as const;\n`,
+  'utf8',
+);
+
+for (const moduleCode of moduleCodes) {
+  const prefix = prefixes[moduleCode];
+  if (!prefix) {
+    throw new Error(`Module ${moduleCode} has no API prefix`);
+  }
+  const moduleSpecPath = writeSpec(
+    tempDirectory,
+    moduleCode,
+    extractSpec(openapi, (path) => path.startsWith(prefix)),
+  );
+  const output = join(
+    frontendDir,
+    `apps/web-antd/src/modules/${moduleCode}/api/generated`,
+  );
+  generateClient(moduleSpecPath, output, edition);
+}
+
+const pageGlobLines = moduleCodes.map(
+  (moduleCode) => `  ...import.meta.glob('../modules/${moduleCode}/views/**/*.vue'),`,
+);
+writeFileSync(
+  generatedModulePages,
+  [
+    "import type { ComponentRecordType } from '@vben/types';",
+    '',
+    "import type { RouteRecordRaw } from 'vue-router';",
+    ...moduleCodes.filter((code) => existsSync(join(frontendDir, `apps/web-antd/src/modules/${code}/public-routes.ts`))).map((code) => `import ${code}PublicRoutes from '../modules/${code}/public-routes';`),
+    `export const modulePublicRoutes: RouteRecordRaw[] = [${moduleCodes.filter((code) => existsSync(join(frontendDir, `apps/web-antd/src/modules/${code}/public-routes.ts`))).map((code) => `...${code}PublicRoutes`).join(', ')}];`,
+    '',
+    'export const modulePageMap: ComponentRecordType = {',
+    ...pageGlobLines,
+    '};',
+    '',
+  ].join('\n'),
+  'utf8',
+);
+
+const publicEntryModules = moduleCodes.filter((code) => existsSync(join(frontendDir, `apps/web-antd/src/modules/${code}/public-entry.ts`)));
+writeFileSync(join(frontendDir, 'apps/web-antd/src/router/generated-public-entries.ts'), [
+  'interface PublicEntry { prefix: string; load: () => Promise<{ bootstrap: () => void | Promise<void> }> }',
+  ...publicEntryModules.map((code) => `import ${code}Entries from '../modules/${code}/public-entry';`),
+  `export const publicEntries: PublicEntry[] = [${publicEntryModules.map((code) => `...${code}Entries`).join(', ')}];`,
+  '',
+].join('\n'));

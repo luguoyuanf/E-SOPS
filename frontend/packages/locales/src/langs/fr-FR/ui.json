@@ -1,0 +1,165 @@
+{
+  "formRules": {
+    "required": "Veuillez entrer {0}",
+    "selectRequired": "Veuillez sélectionner {0}",
+    "minLength": "{0} doit faire au moins {1} caractères",
+    "maxLength": "{0} ne peut faire plus de {1} caractères",
+    "length": "{0} doit faire exactement {1} caractères",
+    "alreadyExists": "{0} `{1}` existe déjà",
+    "startWith": "{0} doit commencer par `{1}`",
+    "invalidURL": "Veuillez entrer une URL valide",
+    "sizeLimit": "La taille du fichier ne peut excéder {0}MB",
+    "previewWarning": "Impossible d'ouvrir le fichier, il n'y a pas d'URL ou d'adresse de prévisualisation disponible"
+  },
+  "actionTitle": {
+    "edit": "Modifier {0}",
+    "create": "Créer {0}",
+    "delete": "Supprimer {0}",
+    "view": "Voir {0}"
+  },
+  "actionMessage": {
+    "deleteConfirm": "Êtes-vous sûr de supprimer {0} ?",
+    "deleting": "Suppression de {0} ...",
+    "deleteSuccess": "{0} supprimé avec succès",
+    "operationSuccess": "Opération réussie",
+    "operationFailed": "Opération échouée"
+  },
+  "placeholder": {
+    "input": "Veuillez entrer",
+    "select": "Veuillez sélectionner",
+    "upload": "Cliquez pour télécharger"
+  },
+  "captcha": {
+    "title": "Veuillez terminer la vérification de sécurité",
+    "sliderSuccessText": "Passé",
+    "sliderDefaultText": "Déplacez le curseur",
+    "alt": "Soutient la valeur de l'attribut src de l'élément img",
+    "sliderRotateDefaultTip": "Cliquez sur l'image pour actualiser",
+    "sliderTranslateDefaultTip": "Cliquez sur l'image pour actualiser",
+    "sliderRotateFailTip": "La validation a échoué",
+    "sliderRotateSuccessTip": "La validation est réussie, temps {0} secondes",
+    "sliderTranslateFailTip": "La validation a échoué",
+    "sliderTranslateSuccessTip": "La validation est réussie, temps {0} secondes",
+    "refreshAriaLabel": "Actualiser le captcha",
+    "confirmAriaLabel": "Confirmer la sélection",
+    "confirm": "Confirmer",
+    "pointAriaLabel": "Cliquez sur le point",
+    "clickInOrder": "Veuillez cliquer dans l'ordre"
+  },
+  "iconPicker": {
+    "placeholder": "Sélectionnez un icône",
+    "search": "Recherchez une icône..."
+  },
+  "jsonViewer": {
+    "copy": "Copier",
+    "copied": "Copié"
+  },
+  "crop": {
+    "title": "Cadrage d’image",
+    "titleTip": "Ratio de cadrage {0}",
+    "confirm": "Cadrer",
+    "cancel": "Annuler le cadrage",
+    "errorTip": "Erreur de découpage"
+  },
+  "tiptap": {
+    "placeholder": "Veuillez entrer du contenu...",
+    "prompts": {
+      "image": "Entrer l'URL de l'image",
+      "link": "Entrer l'URL du lien"
+    },
+    "toolbar": {
+      "bold": "Gras",
+      "italic": "Italique",
+      "underline": "Souligner",
+      "strike": "Barré",
+      "code": "Code",
+      "codeBlock": "Code Block",
+      "heading": "Titre",
+      "paragraph": "Paragraphe",
+      "heading1": "H1",
+      "heading2": "H2",
+      "heading3": "H3",
+      "heading4": "H4",
+      "bulletList": "Bulles",
+      "orderedList": "Numérotation",
+      "blockquote": "Citation",
+      "link": "Lien",
+      "unlink": "Retirer le Lien",
+      "image": "Image",
+      "imageUrl": "URL de l’Image",
+      "imageUpload": "Télécharger l’Image",
+      "textColor": "Couleur du texte",
+      "highlightColor": "Couleur d'highlight",
+      "alignLeft": "Gauche",
+      "alignCenter": "Centrer",
+      "alignRight": "Droite",
+      "preview": "Prévisualiser",
+      "undo": "Annuler",
+      "redo": "Refaire",
+      "clear": "Effacer"
+    },
+    "upload": {
+      "fileTooLarge": "La taille du fichier dépasse la limite",
+      "fileTypeNotAllowed": "Type de fichier non autorisé",
+      "onlySingleImage": "Seul un chargement d’image unique est supporté, la première image est sélectionnée",
+      "uploadFailed": "Échec du chargement"
+    }
+  },
+  "fallback": {
+    "pageNotFound": "Oops! Page introuvable",
+    "pageNotFoundDesc": "Désolé, nous n'avons pas pu trouver la page que vous recherchiez.",
+    "forbidden": "Oops! Accès refusé",
+    "forbiddenDesc": "Désolé, vous n’avez pas la permission d'accéder à cette page.",
+    "internalError": "Oops! Une erreur s'est produite",
+    "internalErrorDesc": "Désolé, mais le serveur a rencontré une erreur.",
+    "offline": "Page en ligne de compte",
+    "offlineError": "Oups ! Erreur réseau",
+    "offlineErrorDesc": "Désolé, impossible de se connecter à Internet. Vérifiez votre connexion.",
+    "comingSoon": "Bientôt disponible",
+    "http": {
+      "requestTimeout": "La requête a expiré. Veuillez réessayer plus tard.",
+      "networkError": "Une erreur réseau s'est produite. Veuillez vérifier votre connexion Internet et réessayer.",
+      "badRequest": "Requête incorrecte. Veuillez vérifier votre entrée et réessayer.",
+      "unauthorized": "Non autorisé. Veuillez vous connecter pour continuer.",
+      "forbidden": "Interdit. Vous n'avez pas la permission d'accéder à cette ressource.",
+      "notFound": "Non trouvé. La ressource demandée n'a pas été trouvée.",
+      "internalServerError": "Erreur du serveur interne. Une erreur s'est produite de notre côté. Veuillez réessayer plus tard."
+    }
+  },
+  "widgets": {
+    "document": "Document",
+    "qa": "Questions et Réponses",
+    "setting": "Paramètres",
+    "logoutTip": "Souhaitez-vous vous déconnecter ?",
+    "viewAll": "Tous les Messages",
+    "notifications": "Notifications",
+    "markAllAsRead": "Marquer Tous comme Lus",
+    "clearNotifications": "Effacer",
+    "checkUpdatesTitle": "Nouvelle Version Disponible",
+    "checkUpdatesDescription": "Cliquez pour actualiser et obtenir la dernière version",
+    "search": {
+      "title": "Rechercher",
+      "searchNavigate": "Recherche",
+      "select": "Sélectionner",
+      "navigate": "Naviguer",
+      "close": "Fermer",
+      "noResults": "Aucun Résultat de Recherche Trouvé",
+      "noRecent": "Aucun historique de recherche",
+      "recent": "Historique de recherche"
+    },
+    "lockScreen": {
+      "title": "Verrouiller l'écran",
+      "screenButton": "Déverrouiller",
+      "password": "Mot de passe",
+      "placeholder": "Veuillez entrer votre mot de passe",
+      "unlock": "Cliquez pour déverrouiller",
+      "errorPasswordTip": "Erreur de mot de passe, veuillez réessayer",
+      "backToLogin": "Retour au login",
+      "entry": "Entrer le système"
+    },
+    "timezone": {
+      "setTimezone": "Définir l' fuseau horaire",
+      "setSuccess": "Fuseau horaire défini avec succès"
+    }
+  }
+}

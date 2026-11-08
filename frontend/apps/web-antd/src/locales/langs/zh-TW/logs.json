@@ -1,0 +1,25 @@
+{
+  "login": {
+    "user": "使用者",
+    "ip": "IP 地址",
+    "status": "狀態",
+    "failureReason": "失敗原因",
+    "userAgent": "瀏覽器",
+    "createdAt": "登入時間"
+  },
+  "common": {
+    "keyword": "關鍵詞"
+  },
+  "operation": {
+    "requestMethod": "請求方法",
+    "user": "使用者",
+    "module": "模組",
+    "action": "操作",
+    "method": "方法",
+    "path": "請求路徑",
+    "statusCode": "狀態碼",
+    "durationMs": "耗時(ms)",
+    "ip": "IP 地址",
+    "createdAt": "操作時間"
+  }
+}

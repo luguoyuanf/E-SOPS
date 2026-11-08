@@ -1,0 +1,87 @@
+name: esops-open
+services:
+  db:
+    image: public.ecr.aws/docker/library/mysql:5.7.44
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?}
+      MYSQL_DATABASE: esops
+      MYSQL_APP_PASSWORD: ${MYSQL_APP_PASSWORD:?}
+    volumes:
+      - db:/var/lib/mysql
+      - ./deploy/release/mysql-init.sh:/docker-entrypoint-initdb.d/10-user.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: ["redis:/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  prestart:
+    image: esops-open-backend:local
+    env_file: .env.runtime
+    environment:
+      MYSQL_USER: root
+      MYSQL_APP_PASSWORD: ${MYSQL_APP_PASSWORD:?}
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:?}
+    command: ["sh", "/app/prestart.sh"]
+    volumes: ["./deploy/release/prestart.sh:/app/prestart.sh:ro"]
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  backend:
+    image: esops-open-backend:local
+    restart: unless-stopped
+    env_file: .env.runtime
+    environment:
+      MYSQL_USER: esops_app
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD:?}
+    depends_on:
+      prestart: {condition: service_completed_successfully}
+    volumes: ["uploads:/app/backend/uploads"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/utils/health-check',timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+  schedule-worker:
+    image: esops-open-backend:local
+    restart: unless-stopped
+    env_file: .env.runtime
+    environment:
+      MYSQL_USER: esops_app
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD:?}
+    command: ["python", "-m", "app.modules.schedule_worker"]
+    depends_on:
+      prestart: {condition: service_completed_successfully}
+  outbox-worker:
+    image: esops-open-backend:local
+    restart: unless-stopped
+    env_file: .env.runtime
+    environment:
+      MYSQL_USER: esops_app
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD:?}
+    command: ["python", "-m", "app.modules.outbox_worker"]
+    depends_on:
+      prestart: {condition: service_completed_successfully}
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    restart: unless-stopped
+    ports: ["${ESOPS_BIND:-127.0.0.1}:${ESOPS_PORT:-18096}:80"]
+    depends_on:
+      backend: {condition: service_healthy}
+volumes:
+  db:
+  redis:
+  uploads:

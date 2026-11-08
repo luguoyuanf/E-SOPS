@@ -1,0 +1,11 @@
+.ant-table-wrapper .ant-table-thead > tr > th,
+.ant-table-wrapper .ant-table-tbody > tr > td,
+.ant-table-wrapper .ant-table-summary > tr > td {
+  text-align: center !important;
+}
+
+.vxe-table--render-default .vxe-header--column,
+.vxe-table--render-default .vxe-body--column,
+.vxe-table--render-default .vxe-footer--column {
+  text-align: center !important;
+}

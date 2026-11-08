@@ -1,0 +1,25 @@
+{
+  "login": {
+    "user": "Người dùng",
+    "ip": "Địa chỉ IP",
+    "status": "Trạng thái",
+    "failureReason": "Lý do thất bại",
+    "userAgent": "Trình duyệt",
+    "createdAt": "Thời gian đăng nhập"
+  },
+  "common": {
+    "keyword": "Từ khóa"
+  },
+  "operation": {
+    "requestMethod": "Phương thức yêu cầu",
+    "user": "Người dùng",
+    "module": "Modul",
+    "action": "Hành động",
+    "method": "Phương thức",
+    "path": "Đường dẫn yêu cầu",
+    "statusCode": "Mã Trạng Thái",
+    "durationMs": "Thời gian (ms)",
+    "ip": "Địa chỉ IP",
+    "createdAt": "Thời gian Thực hiện"
+  }
+}

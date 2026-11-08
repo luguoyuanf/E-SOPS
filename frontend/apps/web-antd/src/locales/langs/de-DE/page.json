@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "codeLogin": "Code-Anmeldung",
+    "qrcodeLogin": "Qr-Code-Anmeldung",
+    "forgetPassword": "Passwort vergessen",
+    "profile": "Profil"
+  },
+  "dashboard": {
+    "title": "Überwachungsplattform",
+    "analytics": "Analyse",
+    "workspace": "Arbeitsbereich"
+  }
+}

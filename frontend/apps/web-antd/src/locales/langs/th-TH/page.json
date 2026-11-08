@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "login": "เข้าสู่ระบบ",
+    "register": "ลงทะเบียน",
+    "codeLogin": "รหัสเข้าสู่ระบบ",
+    "qrcodeLogin": "เข้าสู่ระบบด้วย QR Code",
+    "forgetPassword": "ลืมรหัสผ่าน",
+    "profile": "โปรไฟล์"
+  },
+  "dashboard": {
+    "title": "แดชบอร์ด",
+    "analytics": " аналитิกส์",
+    "workspace": "พื้นที่ทำงาน"
+  }
+}

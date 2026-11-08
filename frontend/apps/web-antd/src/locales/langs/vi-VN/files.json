@@ -1,0 +1,14 @@
+{
+  "fileName": "Tên File",
+  "extension": "Расширение",
+  "contentType": "Loại",
+  "size": "Kích cỡ",
+  "storage": "Lưu trữ",
+  "public": "Công khai",
+  "uploadedAt": "Được tải lên vào",
+  "download": "Tải về",
+  "item": "File",
+  "searchPlaceholder": "Tìm kiếm tên file, loại hoặc расширение",
+  "keyword": "Từ khóa",
+  "operation": "Hành động"
+}

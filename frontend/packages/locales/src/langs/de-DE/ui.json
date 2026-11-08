@@ -1,0 +1,165 @@
+{
+  "formRules": {
+    "required": "Bitte geben Sie {0} ein",
+    "selectRequired": "Bitte wählen Sie {0}",
+    "minLength": "{0} muss mindestens {1} Zeichen umfassen",
+    "maxLength": "{0} kann höchstens {1} Zeichen umfassen",
+    "length": "{0} muss {1} Zeichen lang sein",
+    "alreadyExists": "{0} `{1}` existiert bereits",
+    "startWith": "{0} muss mit `{1}` beginnen",
+    "invalidURL": "Bitte geben Sie eine gültige URL ein",
+    "sizeLimit": "Der Dateigröße darf nicht mehr als {0}MB betragen",
+    "previewWarning": "Das Datei-Öffnen ist nicht möglich, es existiert keine URL oder Vorschau-Adresse"
+  },
+  "actionTitle": {
+    "edit": "Modifizieren Sie {0}",
+    "create": "Erstellen Sie {0}",
+    "delete": "Löschen {0}",
+    "view": "Ansehen {0}"
+  },
+  "actionMessage": {
+    "deleteConfirm": "Möchten Sie {0} wirklich löschen?",
+    "deleting": "{0} wird gelöscht...",
+    "deleteSuccess": "{0} wurde erfolgreich gelöscht",
+    "operationSuccess": "Die Operation war erfolgreich",
+    "operationFailed": "Die Operation ist fehlgeschlagen"
+  },
+  "placeholder": {
+    "input": "Bitte eingeben",
+    "select": "Bitte auswählen",
+    "upload": "Klicken zum Hochladen"
+  },
+  "captcha": {
+    "title": "Bitte füllen Sie die Sicherheitsüberprüfung aus",
+    "sliderSuccessText": "Bestanden",
+    "sliderDefaultText": "Verschieben und ziehen",
+    "alt": "Unterstützt img Tag src Attributwert",
+    "sliderRotateDefaultTip": "Klicken Sie auf das Bild, um es zu aktualisieren",
+    "sliderTranslateDefaultTip": "Klicken Sie auf das Bild, um es zu aktualisieren",
+    "sliderRotateFailTip": "Überprufung fehlgeschlagen",
+    "sliderRotateSuccessTip": "Validierung erfolgreich, Zeit {0} Sekunden",
+    "sliderTranslateFailTip": "Überprufung fehlgeschlagen",
+    "sliderTranslateSuccessTip": "Validierung erfolgreich, Zeit {0} Sekunden",
+    "refreshAriaLabel": "Captcha neu laden",
+    "confirmAriaLabel": "Auswahl bestätigen",
+    "confirm": "Bestätigen",
+    "pointAriaLabel": "Punkt klicken",
+    "clickInOrder": "Bitte in der Reihenfolge klicken"
+  },
+  "iconPicker": {
+    "placeholder": "Icon auswählen",
+    "search": "Icon suchen..."
+  },
+  "jsonViewer": {
+    "copy": " kopieren",
+    "copied": " kopiert"
+  },
+  "crop": {
+    "title": "Bilderkürzen",
+    "titleTip": "Kürzungsverhältnis {0}",
+    "confirm": "Kürzen",
+    "cancel": "Kürzen abbrechen",
+    "errorTip": "Kürzungsfehler"
+  },
+  "tiptap": {
+    "placeholder": "Bitte geben Sie Inhalte ein...",
+    "prompts": {
+      "image": "Bild-URL eingeben",
+      "link": "Fügen Sie eine Link-URL ein"
+    },
+    "toolbar": {
+      "bold": "Fett",
+      "italic": "Kursiv",
+      "underline": "Unterstrichen",
+      "strike": "Durchgestrichen",
+      "code": "Code",
+      "codeBlock": "Code-Block",
+      "heading": "Überschrift",
+      "paragraph": "Absatz",
+      "heading1": "Ü1",
+      "heading2": "Ü2",
+      "heading3": "Ü3",
+      "heading4": "Ü4",
+      "bulletList": "Punkte",
+      "orderedList": "Nummerierung",
+      "blockquote": "Zitat",
+      "link": "Link",
+      "unlink": "Trennen",
+      "image": "Bild",
+      "imageUrl": "Bild-URL",
+      "imageUpload": "Bild hochladen",
+      "textColor": "Textfarbe",
+      "highlightColor": "Hervorhefungsfarbe",
+      "alignLeft": "Links",
+      "alignCenter": "Zentrieren",
+      "alignRight": "Rechts",
+      "preview": "Vorschau",
+      "undo": "Rückgängig",
+      "redo": "Wiederholen",
+      "clear": "Löschen"
+    },
+    "upload": {
+      "fileTooLarge": "Dateigröße überschreitet den Limit",
+      "fileTypeNotAllowed": "Dateityp ist nicht erlaubt",
+      "onlySingleImage": "Nur die Hochladen von einzelnen Bildern ist unterstützt, das erste Bild wird ausgewählt",
+      "uploadFailed": "Upload fehlgeschlagen"
+    }
+  },
+  "fallback": {
+    "pageNotFound": "Oops!seite nicht gefunden",
+    "pageNotFoundDesc": "Tut uns leid, wir konnten die Seite finden, die Sie gesucht haben.",
+    "forbidden": "Oops! Zugriff verweigert",
+    "forbiddenDesc": "Tut uns leid, Sie haben keine Berechtigung, diese Seite zu öffnen.",
+    "internalError": "Oops! Es ist etwas schiefgelaufen",
+    "internalErrorDesc": "Tut uns leid, aber der Server hat einen Fehler aufgetreten.",
+    "offline": "Offline-Seite",
+    "offlineError": "Achso! Netzwerke-Fehler",
+    "offlineErrorDesc": "Tut leid, die Verbindung zum Internet kann nicht hergestellt werden. Prüfen Sie Ihre Verbindung.",
+    "comingSoon": "Bald verfügbar",
+    "http": {
+      "requestTimeout": "Die Anfrage ist abgelaufen. Bitte versuchen Sie es später nochmal.",
+      "networkError": "Ein Netzwerke-Fehler ist aufgetreten. Prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+      "badRequest": "Ungültige Anfrage. Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
+      "unauthorized": "Nicht autorisiert. Bitte melden Sie sich an, um fortzufahren.",
+      "forbidden": "Nicht erlaubt. Sie haben keine Berechtigung, um dieses Ressource zu nutzen.",
+      "notFound": "Nicht gefunden. Der angeforderte Ressource konnte nicht gefunden werden.",
+      "internalServerError": "Interner Server-Fehler. Es ist etwas schief gelaufen. Bitte versuchen Sie es später erneut."
+    }
+  },
+  "widgets": {
+    "document": "Dokument",
+    "qa": "Frage- und Antwort-Sektion",
+    "setting": "Einstellungen",
+    "logoutTip": "Möchten Sie sich abmelden?",
+    "viewAll": "Alle Nachrichten ansehen",
+    "notifications": "Benachrichtigungen",
+    "markAllAsRead": "Alle als gelesen machen",
+    "clearNotifications": "Löschen",
+    "checkUpdatesTitle": "Neue Version verfügbar",
+    "checkUpdatesDescription": "Klicken Sie, um zu aktualisieren und die neueste Version zu erhalten",
+    "search": {
+      "title": "Suchen",
+      "searchNavigate": "Suche navigieren",
+      "select": "Auswählen",
+      "navigate": "Navigieren",
+      "close": "Schließen",
+      "noResults": "Keine Suchergebnisse gefunden",
+      "noRecent": "Keine Suchgeschichte",
+      "recent": "Suchhistorie"
+    },
+    "lockScreen": {
+      "title": "Sicherheitsschirm sperren",
+      "screenButton": "Entsperrt",
+      "password": "Passwort",
+      "placeholder": "Bitte geben Sie das Passwort ein",
+      "unlock": "Klicken Sie, um zu entsperrten",
+      "errorPasswordTip": "Passwort-Fehler, bitte erneut eingeben",
+      "backToLogin": "Zurück zum Login",
+      "entry": "System betreten"
+    },
+    "timezone": {
+      "setTimezone": "Zeitzone einstellen",
+      "setSuccess": "Zeitzone erfolgreich gesetzt"
+    }
+  }
+}

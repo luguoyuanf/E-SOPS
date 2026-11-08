@@ -1,0 +1,25 @@
+{
+  "login": {
+    "user": "Utilisateur",
+    "ip": "Adresse IP",
+    "status": "Statut",
+    "failureReason": "Raison de l'échec",
+    "userAgent": "Navigateur",
+    "createdAt": "Heure de Connexion"
+  },
+  "common": {
+    "keyword": "Mots-clés"
+  },
+  "operation": {
+    "requestMethod": "Méthode de Demande",
+    "user": "Utilisateur",
+    "module": "Module",
+    "action": "Action",
+    "method": "Méthode",
+    "path": "Chemin de Demande",
+    "statusCode": "Code d'État",
+    "durationMs": "Durée (ms)",
+    "ip": "Adresse IP",
+    "createdAt": "Temps d'Opération"
+  }
+}

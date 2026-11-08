@@ -1,0 +1,29 @@
+{
+  "units": {
+    "title": "平台单位管理",
+    "description": "平台统一维护的单位供所有租户使用。租户只能查看和选择，不能修改、停用或删除；特殊单位可由租户自行添加。",
+    "source": "单位来源",
+    "platformReadonly": "平台统一 · 只读",
+    "tenantCustom": "租户自建",
+    "readonly": "仅可使用",
+    "list": "平台单位列表",
+    "search": "单位检索",
+    "searchPlaceholder": "请输入编码或名称",
+    "code": "编码",
+    "name": "名称",
+    "symbol": "单位符号",
+    "status": "状态",
+    "updatedAt": "最近更新",
+    "operation": "操作",
+    "create": "新增平台单位",
+    "edit": "编辑平台单位",
+    "codeRequired": "请输入编码",
+    "nameRequired": "请输入名称",
+    "active": "启用",
+    "inactive": "停用",
+    "cancel": "取消",
+    "save": "保存",
+    "saved": "平台单位已保存，并同步至所有租户",
+    "forbidden": "仅平台超级管理员可管理统一单位"
+  }
+}

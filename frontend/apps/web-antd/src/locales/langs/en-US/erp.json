@@ -1,0 +1,29 @@
+{
+  "units": {
+    "title": "Platform units",
+    "description": "Platform units are shared by all tenants. Tenants can view and select them but cannot change, deactivate or delete them. Tenants can add their own special units.",
+    "source": "Unit source",
+    "platformReadonly": "Platform · Read only",
+    "tenantCustom": "Tenant custom",
+    "readonly": "Read only",
+    "list": "Platform unit list",
+    "search": "Unit search",
+    "searchPlaceholder": "Search by code or name",
+    "code": "Code",
+    "name": "Name",
+    "symbol": "Symbol",
+    "status": "Status",
+    "updatedAt": "Last updated",
+    "operation": "Actions",
+    "create": "Add platform unit",
+    "edit": "Edit platform unit",
+    "codeRequired": "Enter a code",
+    "nameRequired": "Enter a name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saved": "Platform unit saved and synchronized to all tenants",
+    "forbidden": "Only platform super administrators can manage shared units"
+  }
+}

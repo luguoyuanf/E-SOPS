@@ -1,0 +1,14 @@
+{
+  "fileName": "ชื่อไฟล์",
+  "extension": "ต่อending",
+  "contentType": "ประเภท",
+  "size": "ขนาด",
+  "storage": "ความจุ",
+  "public": "สาธารณะ",
+  "uploadedAt": "อัปโหลดที่",
+  "download": "ดาวน์โหลด",
+  "item": "ไฟล์",
+  "searchPlaceholder": "ค้นหาชื่อไฟล์, ชนิด, หรือต่อท้ายไฟล์",
+  "keyword": "คำหลัก",
+  "operation": "การกระทำ"
+}

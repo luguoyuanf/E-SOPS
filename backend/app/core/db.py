@@ -1,0 +1,77 @@
+"""Deprecated compatibility facade for the legacy core.db import path."""
+
+from app.core.database import engine
+from app.platform.bootstrap import (
+    ensure_default_tenant,
+    ensure_default_tenant_plan,
+    ensure_default_tenant_template,
+    ensure_tenant_plan_profile,
+    ensure_tenant_profile,
+    init_db,
+    seed_system_data,
+)
+from app.platform.bootstrap_configuration import (
+    ensure_dictionary_item,
+    ensure_dictionary_type,
+    ensure_setting,
+    seed_dictionaries,
+    seed_mail_accounts,
+    seed_settings,
+    seed_site_message_templates,
+    seed_sms_channels,
+    seed_storage_channels,
+)
+from app.platform.bootstrap_navigation import (
+    ensure_menu,
+    migrate_directory_menu,
+    remove_obsolete_menus,
+    seed_menus,
+)
+from app.platform.bootstrap_rbac import (
+    bind_role_menus,
+    bind_user_role,
+    ensure_default_tenant_plan_menus,
+    ensure_department,
+    ensure_post,
+    ensure_role,
+    ensure_tenant_membership,
+    provision_tenant_roles,
+    replace_role_menus,
+    seed_posts,
+    sync_tenant_plan_role_menus,
+)
+
+__all__ = (
+    "engine",
+    "bind_role_menus",
+    "bind_user_role",
+    "ensure_default_tenant",
+    "ensure_default_tenant_plan",
+    "ensure_default_tenant_plan_menus",
+    "ensure_default_tenant_template",
+    "ensure_department",
+    "ensure_dictionary_item",
+    "ensure_dictionary_type",
+    "ensure_menu",
+    "ensure_post",
+    "ensure_role",
+    "ensure_setting",
+    "ensure_tenant_membership",
+    "ensure_tenant_plan_profile",
+    "ensure_tenant_profile",
+    "init_db",
+    "migrate_directory_menu",
+    "provision_tenant_roles",
+    "remove_obsolete_menus",
+    "replace_role_menus",
+    "seed_dictionaries",
+    "seed_mail_accounts",
+    "seed_menus",
+    "seed_posts",
+    "seed_settings",
+    "seed_site_message_templates",
+    "seed_sms_channels",
+    "seed_storage_channels",
+    "seed_system_data",
+    "sync_tenant_plan_role_menus",
+)

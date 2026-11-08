@@ -1,0 +1,15 @@
+{
+  "auth": {
+    "login": "Войти",
+    "register": "Зарегистрироваться",
+    "codeLogin": "Логин кодом",
+    "qrcodeLogin": "Логин с помощью QR-кода",
+    "forgetPassword": "Забыли пароль",
+    "profile": "Профиль"
+  },
+  "dashboard": {
+    "title": "Панель управления",
+    "analytics": "Аналитика",
+    "workspace": "Рабочее пространство"
+  }
+}

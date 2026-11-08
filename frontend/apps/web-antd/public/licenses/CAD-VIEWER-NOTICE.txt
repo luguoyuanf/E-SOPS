@@ -1,0 +1,38 @@
+CAD / 3D viewer third-party notices
+
+The viewer uses the following unmodified open-source libraries. The JavaScript
+and OpenCASCADE WebAssembly module are distributed as separate, replaceable
+assets by the frontend build. They are not compiled into proprietary native code.
+
+occt-import-js 0.0.23
+License: LGPL-2.1; see occt-import-js-0.0.23-LICENSE.txt.
+Source revision (npm gitHead): c2148e54b456b571238d35cac037d304053d64b2
+Complete interface source and build instructions:
+https://github.com/kovacsv/occt-import-js/tree/c2148e54b456b571238d35cac037d304053d64b2
+Source archive:
+https://github.com/kovacsv/occt-import-js/archive/c2148e54b456b571238d35cac037d304053d64b2.tar.gz
+The published npm package contains dist/occt-import-js.js and
+ dist/occt-import-js.wasm; this application has not modified these library files.
+
+OpenCASCADE Technology, included by the above WebAssembly distribution
+License: LGPL-2.1 with the OpenCASCADE exception; see OpenCASCADE-LICENSE.txt
+and OpenCASCADE-EXCEPTION.txt, reproduced without modification.
+The occt-import-js source tree pins the OCCT submodule to:
+d2abb6d844231cb8f29be6894440874a4700e4a5
+Upstream source and build instructions:
+https://git.dev.opencascade.org/repos/occt.git
+https://github.com/Open-Cascade-SAS/OCCT/tree/d2abb6d844231cb8f29be6894440874a4700e4a5
+Source archive:
+https://github.com/Open-Cascade-SAS/OCCT/archive/d2abb6d844231cb8f29be6894440874a4700e4a5.tar.gz
+
+three 0.186.1
+License: MIT; see three-0.186.1-LICENSE.txt.
+Source: https://github.com/mrdoob/three.js/tree/r186
+
+dxf-parser 1.1.2
+License: MIT; see dxf-parser-1.1.2-LICENSE.txt.
+Source: https://github.com/gdsestimating/dxf-parser
+
+To rebuild or replace the STEP parser, follow the occt-import-js revision's
+build instructions using the pinned OCCT source. Replace its dist JavaScript
+and WebAssembly files in the dependency, then rebuild the frontend assets.
